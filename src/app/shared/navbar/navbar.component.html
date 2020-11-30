@@ -1,4 +1,4 @@
-<mat-sidenav-container class="sidenav-container" [ngStyle]="{'background-image':'url(/assets/images/shopping-list-background.png)'}">
+<mat-sidenav-container>
   <mat-sidenav #drawer class="sidenav" fixedInViewport
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
@@ -36,7 +36,9 @@
     </mat-toolbar>
     
     <!-- Content Here -->
-    <router-outlet></router-outlet>
+    <div class="container-fluid">
+      <router-outlet></router-outlet>
+    </div>
 
 
   </mat-sidenav-content>
