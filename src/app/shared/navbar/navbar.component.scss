@@ -22,4 +22,20 @@
 
 ::ng-deep .mat-sidenav {
   background-color: #673ab7;
+  border-radius: 20px;
+  height: fit-content;
+}
+
+/*  BACKGROUND IMAGE */
+::ng-deep .mat-sidenav-container {
+  /* The image used */
+  background-image: url("/assets/images/coffee-2608864_1920_low.jpg");
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
