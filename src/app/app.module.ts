@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { MaterialModule } from './material/material.module';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { HttpClientModule } from "@angular/common/http";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,13 +17,17 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { FooterComponent } from './shared/footer/footer.component';
 import { HomeComponent } from './home/home.component';
+import { ShoppinglistCreateComponent } from './shoppinglist/shoppinglist-create/shoppinglist-create.component';
+import { ShoppinglistDetailsComponent } from './shoppinglist/shoppinglist-details/shoppinglist-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     FooterComponent,
-    HomeComponent
+    HomeComponent,
+    ShoppinglistCreateComponent,
+    ShoppinglistDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -37,6 +42,8 @@ import { HomeComponent } from './home/home.component';
     MatIconModule,
     MatListModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent, NavbarComponent],
