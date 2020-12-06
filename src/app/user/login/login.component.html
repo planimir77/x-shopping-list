@@ -1,22 +1,43 @@
 <div class="mx-sm-5 pb-5 px-sm-5">
-  <div class="justify-content-center bg-white-transparent mb-5">
-    <div class="row px-5">
-      <div class="col-6 pt-3">
+  <div class="justify-content-center mb-4">
+
+    <div class="row px-5 pt-4 pb-2">
+      <div class="col-6">
         <a routerLink="/user/register" class="text-light">
           <small>Create new account</small>
         </a>
       </div>
-      <div class="col-6 pt-3 text-right">
+      <div class="col-6 text-right">
         <a routerLink="javascript:void(0)" class="text-light">
           <small>Forgot password?</small>
         </a>
       </div>
-      
     </div>
+
+    <div class="card bg-white-transparent mx-3">
+      <div class="text-muted text-center mt-3 mb-2">
+        <small class="yellow">Login with</small>
+      </div>
+      <div class="btn-wrapper text-center row justify-content-center pb-2">
+        <a routerLink="javascript:void(0)" class="btn btn-neutral btn-icon">
+          <span class="btn-inner--icon">
+            <img src="./assets/images/icons/github.svg" />
+          </span>
+          <span class="btn-inner--text">Github</span>
+        </a>
+        <a routerLink="javascript:void(0)" class="btn btn-neutral btn-icon">
+          <span class="btn-inner--icon">
+            <img src="./assets/images/icons/google.svg" />
+          </span>
+          <span class="btn-inner--text">Google</span>
+        </a>
+      </div>
+    </div>
+
     <div class="card bg-transparent shadow border-0">
       <div class="card-body px-lg-5 py-lg-5">
         <div class="text-center text-muted mb-4">
-          <small class="yellow">Login with</small>
+          <small class="yellow">Or login with credentials</small>
         </div>
         <form role="form">
           <div class="form-group mb-3" [ngClass]="{ focused: focus === true }">
@@ -66,25 +87,6 @@
          
           <div class="text-center">
             <button type="button" class="btn btn-primary my-4">Login</button>
-          </div>
-          <div class="card bg-transparent">
-            <div class="text-muted text-center mt-2 mb-3">
-              <small class="yellow">Or login with</small>
-            </div>
-            <div class="btn-wrapper text-center row justify-content-center">
-              <a routerLink="javascript:void(0)" class="btn btn-neutral btn-icon">
-                <span class="btn-inner--icon">
-                  <img src="./assets/images/icons/github.svg" />
-                </span>
-                <span class="btn-inner--text">Github</span>
-              </a>
-              <a routerLink="javascript:void(0)" class="btn btn-neutral btn-icon">
-                <span class="btn-inner--icon">
-                  <img src="./assets/images/icons/google.svg" />
-                </span>
-                <span class="btn-inner--text">Google</span>
-              </a>
-            </div>
           </div>
         </form>
       </div>
