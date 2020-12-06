@@ -35,11 +35,12 @@ export class ShoppinglistCreateComponent implements OnInit {
     
     this.shoppinglistService.createShoppinglist(input)
       .subscribe({
-        next: () => {
-          this.router.navigate(['/shoppinglistName']);
+        next: (response) => {
+          console.log(response);
+          this.router.navigate(['/shoppinglist/details']);
         },
         error: (err) => {
-
+          console.log(err);
         }
       });
   }
