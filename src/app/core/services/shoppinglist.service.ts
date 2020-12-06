@@ -12,11 +12,10 @@ const shoppinglistUrl = environment.apiUrl;
 export class ShoppinglistService {
   constructor(private httpClient: HttpClient) { }
 
-  // post("/api/shoppinglist")
+  // post("/api/shoppinglist/create")
   createShoppinglist(data: any): Observable<IShoppinglist> {
-    return this.httpClient
-      .post<IShoppinglist>(
-        `${shoppinglistUrl}/shoppinglist`,
+    return this.httpClient.post<IShoppinglist>(
+        `${shoppinglistUrl}/shoppinglist/create`,
         data,
         { withCredentials: true }
       );
