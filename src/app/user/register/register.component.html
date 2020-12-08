@@ -1,7 +1,6 @@
 <div class="justify-content-center pb-5">
   <div class="col-lg-5">
     <div class="card bg-transparent shadow border-0 mt-3">
-
       <div class="card bg-white-transparent mx-3">
         <div class="text-muted text-center mt-3 mb-2">
           <small class="yellow">Sign up with</small>
@@ -26,9 +25,43 @@
         <div class="text-center text-muted mb-4">
           <small class="yellow">Or sign up with credentials</small>
         </div>
-        <form role="form">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <!-- username -->
+          <div class="form-group" [ngClass]="{ focused: focus === true }">
+            <div class="input-group input-group-alternative">
+              <div class="input-group-prepend">
+                <span class="input-group-text"
+                  ><i class="ni ni-hat-3"></i
+                ></span>
+              </div>
+              <input
+                class="form-control"
+                formControlName="username"
+                placeholder="Username"
+                type="text"
+                (focus)="focus = true"
+                (blur)="focus = false"
+              />
+            </div>
+            <p *ngIf="username.invalid && username.errors && username.touched">
+              <small class="text-danger" *ngIf="username.hasError('required')">
+                Username is required!
+              </small>
+              <small class="text-danger" *ngIf="username.hasError('minlength')">
+                The minimum length for this field is
+                {{ username.errors.minlength.requiredLength }}
+                characters.
+              </small>
+              <small class="text-danger" *ngIf="username.hasError('maxlength')">
+                The maximum length for this field is
+                {{ username.errors.maxlength.requiredLength }}
+                characters.
+              </small>
+            </p>
+          </div>
+          <!-- email -->
           <div class="form-group" [ngClass]="{ focused: focus1 === true }">
-            <div class="input-group input-group-alternative mb-3">
+            <div class="input-group input-group-alternative">
               <div class="input-group-prepend">
                 <span class="input-group-text"
                   ><i class="ni ni-email-83"></i
@@ -36,13 +69,23 @@
               </div>
               <input
                 class="form-control"
+                formControlName="email"
                 placeholder="Email"
                 type="email"
                 (focus)="focus1 = true"
                 (blur)="focus1 = false"
               />
             </div>
+            <p *ngIf="email.invalid && email.errors && email.touched">
+              <small class="text-danger" *ngIf="email.hasError('required')">
+                Email is required!
+              </small>
+              <small class="text-danger" *ngIf="email.hasError('pattern')">
+                Please provide a valid email address
+              </small>
+            </p>
           </div>
+          <!-- password -->
           <div class="form-group" [ngClass]="{ focused: focus2 === true }">
             <div class="input-group input-group-alternative">
               <div class="input-group-prepend">
@@ -52,19 +95,63 @@
               </div>
               <input
                 class="form-control"
+                formControlName="password"
                 placeholder="Password"
                 type="password"
+                name="password"
                 (focus)="focus2 = true"
                 (blur)="focus2 = false"
               />
             </div>
+            <p *ngIf="password.invalid && password.errors && password.touched">
+              <small class="text-danger" *ngIf="password.hasError('required')">
+                Password is required!
+              </small>
+              <small class="text-danger" *ngIf="password.hasError('minlength')">
+                The minimum length for this field is
+                {{ password.errors.minlength.requiredLength }}
+                characters.
+              </small>
+            </p>
           </div>
-          <div class="text-muted font-italic">
-            <small
-              >password strength:
-              <span class="text-success font-weight-700">strong</span>
-            </small>
+          <!-- rePassword -->
+          <div class="form-group" [ngClass]="{ focused: focus2 === true }">
+            <div class="input-group input-group-alternative">
+              <div class="input-group-prepend">
+                <span class="input-group-text"
+                  ><i class="ni ni-lock-circle-open"></i
+                ></span>
+              </div>
+              <input
+                class="form-control"
+                formControlName="rePassword"
+                placeholder="Confirm password"
+                type="password"
+                ngValidateEqual="password"
+                (focus)="focus2 = true"
+                (blur)="focus2 = false"
+              />
+            </div>
+            <p
+              *ngIf="
+                rePassword.invalid && rePassword.errors && rePassword.touched
+              "
+            >
+              <small
+                class="text-danger"
+                *ngIf="rePassword.hasError('required')"
+              >
+                Please confirm password!
+              </small>
+              <small
+                class="text-danger"
+                *ngIf="rePassword.hasError('notEqual') && password.valid"
+              >
+                Passwords Don't Match
+              </small>
+            </p>
           </div>
+          <!-- Privacy Policy -->
           <div class="row my-4">
             <div class="col-12">
               <div
@@ -84,8 +171,13 @@
               </div>
             </div>
           </div>
+          <!-- Submit -->
           <div class="text-center">
-            <button type="button" class="btn btn-primary mt-4">
+            <button
+              type="submit"
+              class="btn btn-primary mt-4"
+              [disabled]="form.invalid"
+            >
               Create account
             </button>
           </div>
