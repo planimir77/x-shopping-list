@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { IShoppinglist } from '../interfaces/shoppinglist.interface';
-import { environment } from '../../../environments/environment';
+import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
+import { IShoppinglist } from 'src/app/shared/interfaces';
 
-const shoppinglistUrl = environment.apiUrl;
+const apiUrl = environment.apiUrl;
 
 @Injectable({
   providedIn: 'root'
@@ -12,10 +12,10 @@ const shoppinglistUrl = environment.apiUrl;
 export class ShoppinglistService {
   constructor(private httpClient: HttpClient) { }
 
-  // post("/api/shoppinglist/create")
+  // post("/api/shoppinglists/create")
   createShoppinglist(data: any): Observable<IShoppinglist> {
     return this.httpClient.post<IShoppinglist>(
-        `${shoppinglistUrl}/shoppinglist/create`,
+        `${apiUrl}/shoppinglists/create`,
         data,
         { withCredentials: true }
       );
