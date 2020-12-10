@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 
 import { ValidateEqualModule } from 'ng-validate-equal';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { ValidateEqualModule } from 'ng-validate-equal';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    ValidateEqualModule
+    ValidateEqualModule,
+    SharedModule
   ]
 })
 export class UserModule { }

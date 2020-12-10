@@ -13,6 +13,7 @@ export class ShoppinglistCreateComponent implements OnInit {
   title = 'Create Shopping List';
 
   public addShopFormGroup: FormGroup;
+  isLoading = false;
 
   constructor(
     private shoppinglistService: ShoppinglistService,
@@ -31,15 +32,17 @@ export class ShoppinglistCreateComponent implements OnInit {
 
   onSubmit(): void {
     const input = this.addShopFormGroup.value
-    console.log(input);
+
+    this.isLoading = true;
     
     this.shoppinglistService.createShoppinglist(input)
       .subscribe({
         next: (response) => {
           console.log(response);
-          this.router.navigate(['/shoppinglist/details']);
+          this.router.navigate([`/shoppinglist/:${response._id}`]);
         },
         error: (err) => {
+          this.isLoading = false;
           console.log(err);
         }
       });

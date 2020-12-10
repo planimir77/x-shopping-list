@@ -106,6 +106,9 @@
           <p *ngIf="errorMessage" class="text-danger text-center mb-0 mt-1">
             {{errorMessage}}
           </p>
+          <!-- Loading -->
+          <app-loading [isLoading]="isLoading"></app-loading>
+           <!-- Submit -->
           <div class="text-center">
             <button 
             type="submit" 
