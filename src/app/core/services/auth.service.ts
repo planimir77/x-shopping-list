@@ -8,9 +8,7 @@ import { environment } from 'src/environments/environment';
 
 const apiUrl = environment.apiUrl;
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class AuthService {
 
   private _currentUser: BehaviorSubject<IUser | null> = new BehaviorSubject(undefined);
@@ -37,13 +35,13 @@ export class AuthService {
   }
 
   logout(): Observable<any> {
-    return this.http.post(`${apiUrl}/users/logout`, {}).pipe(
+    return this.http.post(`${apiUrl}/api/users/logout`, {}).pipe(
       tap((user: IUser) => this._currentUser.next(null))
     );
   }
 
   authenticate(): Observable<any> {
-    return this.http.get(`/users/profile`).pipe(
+    return this.http.get(`${apiUrl}/api/users/profile`).pipe(
       tap((user: IUser) => this._currentUser.next(user)),
       catchError(() => {
         this._currentUser.next(null);
