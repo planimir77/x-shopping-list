@@ -1,6 +1,8 @@
-import { IBase } from './base.interface';
+import { IUser, IBase } from '.';
 
 export interface IShoppinglist extends IBase {
-    name: string,
+    shoppinglistName: string,
+    subscribers: IUser[],
     items: string[],
+    userId: IUser,
 }

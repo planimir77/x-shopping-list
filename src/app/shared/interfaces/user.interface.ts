@@ -1,5 +1,4 @@
-import { IBase } from './base.interface';
-import { IShoppinglist } from './shoppinglist.interface';
+import { IBase, IShoppinglist } from '.';
 
 export interface IUser extends IBase {
     shoppinglist: IShoppinglist[];
