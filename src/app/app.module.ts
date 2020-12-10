@@ -7,19 +7,20 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NavbarComponent } from './shared/navbar/navbar.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { FooterComponent } from './shared/footer/footer.component';
 import { HomeComponent } from './home/home.component';
+import { appInterceptorProvider } from './core/app.interceptor'
+import { AuthGuard } from './core/guards/auth.guard';
+import { CoreModule } from './core/core.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent,
-    FooterComponent,
     HomeComponent,
   ],
   imports: [
+    CoreModule,
     BrowserModule,
     AppRoutingModule,
     NgbModule,
@@ -27,9 +28,12 @@ import { HomeComponent } from './home/home.component';
     MaterialModule,
     LayoutModule,
     HttpClientModule,
+    SharedModule
   ],
-  providers: [],
-  bootstrap: [AppComponent, NavbarComponent],
+  providers: [appInterceptorProvider, AuthGuard],
+  bootstrap: [
+    AppComponent,
+  ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }
