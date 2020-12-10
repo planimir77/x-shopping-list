@@ -15,7 +15,7 @@ export class ShoppinglistService {
   // post("/api/shoppinglists/create")
   createShoppinglist(data: any): Observable<IShoppinglist> {
     return this.httpClient.post<IShoppinglist>(
-        `${apiUrl}/shoppinglists/create`,
+        `${apiUrl}/api/shoppinglists/create`,
         data,
         { withCredentials: true }
       );
