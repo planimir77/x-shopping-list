@@ -17,7 +17,6 @@ export class ShoppinglistService {
     return this.httpClient.post<IShoppinglist>(
         `${apiUrl}/api/shoppinglists/create`,
         data,
-        { withCredentials: true }
       );
   }
 }
