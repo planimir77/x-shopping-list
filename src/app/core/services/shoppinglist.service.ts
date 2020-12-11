@@ -19,4 +19,10 @@ export class ShoppinglistService {
         data,
       );
   }
+  // get("/api/shoppinglists/:id")
+  loadShoppinglist(id: string): Observable<IShoppinglist> {
+    return this.httpClient.get<IShoppinglist>(
+      `${apiUrl}/api/shoppinglists/${id}`
+      );
+  }
 }

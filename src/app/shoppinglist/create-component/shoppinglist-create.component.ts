@@ -39,7 +39,7 @@ export class ShoppinglistCreateComponent implements OnInit {
       .subscribe({
         next: (response) => {
           console.log(response);
-          this.router.navigate([`/shoppinglist/:${response._id}`]);
+          this.router.navigate(['/shoppinglist/', response._id]);
         },
         error: (err) => {
           this.isLoading = false;

@@ -6,7 +6,7 @@ import { ShoppinglistDetailsComponent } from './details-component/shoppinglist-d
 
 const routes: Routes = [
   { path: 'create', component: ShoppinglistCreateComponent },
-  { path: 'details', component: ShoppinglistDetailsComponent}
+  { path: ':id', component: ShoppinglistDetailsComponent}
 ];
 
 @NgModule({
