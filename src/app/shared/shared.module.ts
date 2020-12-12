@@ -3,13 +3,15 @@ import { CommonModule } from '@angular/common';
 import { CapitalizePipe } from './pipes/capitalize.pipe';
 import { LoadingComponent } from './loading/loading.component';
 import { MaterialModule } from '../material/material.module';
+import { EndWithSPipe } from './pipes/end-with-s.pipe';
 
 
 
 @NgModule({
   declarations: [
     CapitalizePipe,
-    LoadingComponent
+    LoadingComponent,
+    EndWithSPipe
   ],
   imports: [
     CommonModule,
@@ -17,7 +19,8 @@ import { MaterialModule } from '../material/material.module';
   ],
   exports: [
     CapitalizePipe,
-    LoadingComponent
+    LoadingComponent,
+    EndWithSPipe
   ],
 })
 export class SharedModule { }

@@ -47,7 +47,7 @@
       <div class="spacer"></div>
       <a routerLink="/">
         <span>
-            <span *ngIf="currentUser?.username; else x">{{ currentUser?.username | capitalize }}</span>
+            <span *ngIf="currentUser?.username; else x">{{ currentUser?.username | capitalize | endWithS }}</span>
             <ng-template #x>
                 <span>X</span>
             </ng-template>
