@@ -1,2 +1,4 @@
-<p>shoppinglist-details works!</p>
-<div>{{shoppinglist?.shoppinglistName}}</div>
+<div class="conteiner">
+    <h1 class="text-center">{{ shoppinglist?.shoppinglistName | capitalize }}</h1>
+    <app-item-add [shoppinglistId]="shoppinglist?._id"></app-item-add>
+</div>

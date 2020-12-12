@@ -7,12 +7,13 @@ import { MaterialModule } from '../material/material.module'
 import { ShoppinglistCreateComponent } from './create-component/shoppinglist-create.component';
 import { ShoppinglistDetailsComponent } from './details-component/shoppinglist-details.component';
 import { SharedModule } from '../shared/shared.module';
+import { ItemModule } from '../item/item.module';
 
 
 @NgModule({
   declarations: [
     ShoppinglistCreateComponent,
-    ShoppinglistDetailsComponent
+    ShoppinglistDetailsComponent,
   ],
   imports: [
     CommonModule,
@@ -20,7 +21,8 @@ import { SharedModule } from '../shared/shared.module';
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
-    SharedModule
+    SharedModule,
+    ItemModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
