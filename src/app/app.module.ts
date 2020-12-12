@@ -9,8 +9,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
 import { HomeComponent } from './home/home.component';
-import { appInterceptorProvider } from './core/app.interceptor'
-import { AuthGuard } from './core/guards/auth.guard';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 
