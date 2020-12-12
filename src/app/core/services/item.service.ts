@@ -12,10 +12,10 @@ export class ItemService {
   constructor(private httpClient: HttpClient) { }
 
   // post("/api/items/create")
-  createItem(data: any): Observable<IItem> {
+  createItem(itemName: any, shoppinglistId: any ): Observable<IItem> {
     return this.httpClient.post<IItem>(
         `${apiUrl}/api/items/create`,
-        data,
+        {itemName, shoppinglistId},
       );
   }
   // get("/api/items/:id")
