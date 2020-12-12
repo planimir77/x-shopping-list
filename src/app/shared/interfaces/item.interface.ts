@@ -1,6 +1,6 @@
 import { IBase, IUser } from '.';
 
-export interface Item extends IBase{
+export interface IItem extends IBase{
     itemName: string,
     userId: IUser,
 }
