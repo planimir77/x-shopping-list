@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
@@ -8,12 +8,18 @@ import { ShoppinglistCreateComponent } from './create-component/shoppinglist-cre
 import { ShoppinglistDetailsComponent } from './details-component/shoppinglist-details.component';
 import { SharedModule } from '../shared/shared.module';
 import { ItemModule } from '../item/item.module';
+// import { ItemAddComponent } from '../item/item-add-component/item-add.component';
+// import { ItemListComponent } from '../item/item-list/item-list.component';
+// import { ItemComponent } from '../item/item/item.component';
 
 
 @NgModule({
   declarations: [
     ShoppinglistCreateComponent,
     ShoppinglistDetailsComponent,
+    // ItemAddComponent,
+    // ItemListComponent,
+    // ItemComponent,
   ],
   imports: [
     CommonModule,
@@ -24,6 +30,6 @@ import { ItemModule } from '../item/item.module';
     SharedModule,
     ItemModule
   ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [NO_ERRORS_SCHEMA]
 })
 export class ShoppinglistModule { }
