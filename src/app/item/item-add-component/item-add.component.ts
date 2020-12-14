@@ -1,7 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { ItemService } from '../../core/services';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
+import { IShoppinglist } from 'src/app/shared/interfaces';
 
 @Component({
   selector: 'app-item-add',
@@ -10,7 +11,8 @@ import {FormGroup, FormControl, Validators} from '@angular/forms';
 })
 export class ItemAddComponent implements OnInit {
 
-  @Input() shoppinglistId: string;
+  @Input() shoppinglist: IShoppinglist;
+  @Output() itemAdded = new EventEmitter<any>();
   public addFormGroup: FormGroup;
   isLoading = false;
   errorMessage = '';
@@ -40,10 +42,10 @@ export class ItemAddComponent implements OnInit {
 
     this.isLoading = true;
     
-    this.itemService.createItem(itemName, this.shoppinglistId)
+    this.itemService.createItem(itemName, this.shoppinglist._id)
       .subscribe({
         next: (response) => {
-          console.log(response);
+          this.itemAdded.emit(response);
           this.addFormGroup.reset();
         },
         error: (err) => {

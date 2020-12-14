@@ -18,10 +18,10 @@ export class ItemService {
         {itemName, shoppinglistId},
       );
   }
-  // get("/api/items/:id")
-  loadItem(id: string): Observable<IItem> {
+  // get("/api/items/:itemId&shoppinglistId")
+  loadItem(_id: string, shoppinglistId: string): Observable<IItem> {
     return this.httpClient.get<IItem>(
-      `${apiUrl}/api/items/${id}`
+      `${apiUrl}/api/items/${_id}&${shoppinglistId}`
       );
   }
 }
