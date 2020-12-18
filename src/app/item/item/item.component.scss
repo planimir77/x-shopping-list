@@ -1,0 +1,11 @@
+:host {
+  .mat-icon {
+    font-size: 18px;
+  }
+}
+button:focus, 
+button:active:focus, 
+button.active:focus {
+    outline: none !important;
+    outline-style: none !important;
+}

@@ -1,3 +1,18 @@
 .mat-icon-button {
-    line-height: 55px;
+  line-height: 45px;
+}
+:host {
+  .mat-icon {
+    font-size: 32px;
+    color: green;
+  }
+}
+form {
+  margin-bottom: -18px !important;
+}
+button:focus, 
+button:active:focus, 
+button.active:focus {
+    outline: none !important;
+    outline-style: none !important;
 }

@@ -1,0 +1,15 @@
+
+::ng-deep .mat-tab-label {
+    justify-content: space-around !important;
+    min-width: 50% !important;
+}
+.mat-tab-group {
+    margin-top: 30px;
+}
+h1 { 
+    margin-bottom: 0px;
+    position: relative;
+    top: 50px;
+    left: 50%; 
+    transform: translate(-50%)
+}
