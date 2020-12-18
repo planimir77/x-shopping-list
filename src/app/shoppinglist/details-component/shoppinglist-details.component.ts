@@ -26,8 +26,6 @@ export class ShoppinglistDetailsComponent implements OnInit {
       if(!shoppinglist){
         return this.router.navigate(['/']);
       }
-
-      this.setItemsFrom(shoppinglist.items);
     });
     
   }
@@ -35,22 +33,8 @@ export class ShoppinglistDetailsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  setItemsFrom(items: IItem[]){
-    for (const itemId of items) {
-      this.setItem(itemId);
-    }
-  }
-
-  setItem(itemId) { 
-    this.itemService.loadItem(itemId, this.shoppinglist._id).subscribe(item => {
-      if (item) {
-        this.items.push(item[0]);
-      }
-    });
-  }
-
   onItemAdded(item: IItem): void { 
-    this.items.push(item);
+    this.shoppinglist.items.push(item);
   }
 
 }
