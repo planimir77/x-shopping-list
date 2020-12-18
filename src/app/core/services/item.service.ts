@@ -11,17 +11,23 @@ export class ItemService {
 
   constructor(private httpClient: HttpClient) { }
 
-  // post("/api/items/create")
-  createItem(itemName: any, shoppinglistId: any ): Observable<IItem> {
+  // post("/api/item/create")
+  createItem(itemName: string, shoppinglistId: string ): Observable<IItem> {
     return this.httpClient.post<IItem>(
-        `${apiUrl}/api/items/create`,
+        `${apiUrl}/api/item/create`,
         {itemName, shoppinglistId},
       );
   }
-  // get("/api/items/:itemId&shoppinglistId")
+  // get("/api/item/:itemId&shoppinglistId")
   loadItem(_id: string, shoppinglistId: string): Observable<IItem> {
     return this.httpClient.get<IItem>(
-      `${apiUrl}/api/items/${_id}&${shoppinglistId}`
+      `${apiUrl}/api/item/${_id}&${shoppinglistId}`
+      );
+  }
+  // get("/api/item/:itemId&shoppinglistId")
+  loadItemByName(itemName: string, shoppinglistId: string): Observable<IItem> {
+    return this.httpClient.get<IItem>(
+      `${apiUrl}/api/item/by-name/${itemName}&${shoppinglistId}`
       );
   }
 }
