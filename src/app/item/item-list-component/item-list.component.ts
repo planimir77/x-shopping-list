@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { IItem } from 'src/app/shared/interfaces';
+import { IShoppinglist } from 'src/app/shared/interfaces';
 
 @Component({
   selector: 'app-item-list',
@@ -8,7 +8,7 @@ import { IItem } from 'src/app/shared/interfaces';
 })
 export class ItemListComponent implements OnInit {
 
-  @Input() items: IItem[];
+  @Input() shoppinglist: IShoppinglist;
 
   constructor() { }
 
