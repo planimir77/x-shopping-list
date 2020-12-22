@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ItemService, ShoppinglistService } from 'src/app/core/services';
+import { ShoppinglistService } from 'src/app/core/services';
 import { IItem, IShoppinglist } from 'src/app/shared/interfaces';
 
 @Component({
@@ -11,11 +11,9 @@ import { IItem, IShoppinglist } from 'src/app/shared/interfaces';
 export class ShoppinglistDetailsComponent implements OnInit {
 
   shoppinglist: IShoppinglist = null;
-  items: IItem[] = [];
 
   constructor(
-    private shoppinglistService: ShoppinglistService, 
-    private itemService: ItemService,
+    private shoppinglistService: ShoppinglistService,
     private activatedRoute: ActivatedRoute,
     private router: Router
     ) {

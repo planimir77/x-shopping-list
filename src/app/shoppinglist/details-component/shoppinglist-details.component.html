@@ -8,7 +8,9 @@
       [shoppinglist]="shoppinglist"
       (itemAdded)="onItemAdded($event)"
     ></app-item-add>
-    <app-item-list [shoppinglist]="shoppinglist"></app-item-list>
+    <app-item-list 
+    [shoppinglist]="shoppinglist"
+    ></app-item-list>
   </mat-tab>
   <mat-tab>
     <ng-template mat-tab-label>
