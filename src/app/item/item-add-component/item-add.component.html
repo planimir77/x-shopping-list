@@ -1,8 +1,8 @@
-<div class="row pl-3">
-  <form
+
+<form
     [formGroup]="addFormGroup"
     (ngSubmit)="onSubmit()"
-    class="row justify-content-center align-items-cente text-center mt-4"
+    class="row pl-3 pt-2"
   >
     <button
       aria-label="Add item to shopping list"
@@ -11,8 +11,7 @@
       [disabled]="!addFormGroup.valid"
       type="submit"
     >
-      <span class="mat-button-wrapper"
-        ><mat-icon
+      <span class="mat-button-wrapper icon"><mat-icon
           _ngcontent-wry-c17=""
           class="addIcon mat-icon notranslate material-icons mat-icon-no-color"
           role="img"
@@ -26,25 +25,21 @@
       ></span
       ><span class="mat-button-focus-overlay"></span>
     </button>
-    <p>
-      <mat-form-field appearance="outline" class="example-full-width">
-        <mat-label>Add item</mat-label>
-        <input
-          matInput
-          type="text"
-          placeholder="Add item"
-          formControlName="itemName"
-        />
-        <mat-error *ngIf="checkError('itemName', 'required')"
-          ></mat-error
-        >
-        <mat-error *ngIf="checkError('itemName', 'minlength')"
-          >Item should be more than 2 characters</mat-error
-        >
-        <mat-error *ngIf="checkError('itemName', 'maxlength')"
-          >Item should be less than 50 characters</mat-error
-        >
-      </mat-form-field>
-    </p>
+    <mat-form-field class="example-full-width ml-3">
+      <mat-label>Add product</mat-label>
+      <input
+        matInput
+        type="text"
+        formControlName="itemName"
+      />
+      <mat-error *ngIf="checkError('itemName', 'required')"
+        ></mat-error
+      >
+      <mat-error *ngIf="checkError('itemName', 'minlength')"
+        >Item should be more than 2 characters</mat-error
+      >
+      <mat-error *ngIf="checkError('itemName', 'maxlength')"
+        >Item should be less than 50 characters</mat-error
+      >
+    </mat-form-field>
   </form>
-</div>

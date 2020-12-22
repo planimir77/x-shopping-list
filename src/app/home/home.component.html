@@ -1,38 +1,37 @@
-<div class="mt-5 text-center">
-  <h1>
-      <span my-font>
-          Your shopping list
+<div class="width flex justify-content-center">
+  <div class="mt-5 text-center">
+    <h1>
+      <span> Your shopping list </span>
+      <br />
+      <span class="font-weight-light">
+        anytime,<br />
+        anywhere!
       </span>
-    <br />
-    <span class="font-weight-light">
-      anytime,<br />
-      anywhere!
-    </span>
-  </h1>
-  <h1>
-    <a [routerLink]="(isLogged$ | async) ? ['/shoppinglist/create'] : ['/user/login']" mat-fab>
-      <mat-icon>add</mat-icon>
-    </a>
-    <br />Just create your personal list
-  </h1>
-  <h1>Personal ... Not quite!</h1>
-  <h3 class="text-center">
-    If you want you can share it<br />
-    with your family, friends or whoever you want. <br />You can create
-    different lists according to your needs:
-  </h3>
-  <div class="d-flex justify-content-between row px-5 pb-5 mb0">
-    <div class="col-xs text-left pr-3">
-      <h3>-grocery store</h3>
-      <h3>-food additives</h3>
-    </div>
-    <div class="col-xs text-left pr-3">
-      <h3>-pharmacy</h3>
-      <h3>-hardware</h3>
-    </div>
-    <div class="col-xs text-left">
-      <h3>-shopping centre</h3>
-      <h3>-or whatever you can think of</h3>
+    </h1>
+    <h1>
+      <a
+        [routerLink]="
+          (isLogged$ | async) ? ['/shoppinglist/create'] : ['/user/login']
+        "
+        mat-fab
+      >
+        <mat-icon>add</mat-icon>
+      </a>
+      <br />Just create your personal list
+    </h1>
+    <h1>Personal ... Not quite!</h1>
+    <h3 class="text-center">
+      If you want you can share it<br />
+      with your family, friends or whoever you want. <br />You can create
+      different lists according to your needs:
+    </h3>
+    <div class="d-flex justify-content-center row pb-5 mb0">
+      <h3 class="col-md-4 col-sm-6 text-left">-grocery store</h3>
+      <h3 class="col-md-4 col-sm-6 text-left">-food additives</h3>
+      <h3 class="col-md-4 col-sm-6 text-left">-pharmacy</h3>
+      <h3 class="col-md-4 col-sm-6 text-left">-hardware</h3>
+      <h3 class="col-md-4 col-sm-6 text-left">-shopping centre</h3>
+      <h3 class="col-md-4 col-sm-6 text-left">-or whatever you can think of</h3>
     </div>
   </div>
 </div>

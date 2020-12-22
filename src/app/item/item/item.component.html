@@ -1,2 +1,9 @@
-<p>{{item.itemName}}</p>
-
+<div mat-line class="d-flex justify-content-between mt-3">
+    <span class="pt-2"> {{ item.itemName }} </span>
+    <button mat-icon-button (click)="addToBasket(item._id)">
+    <mat-icon
+    [ngStyle]="{'color':isInBasket ? 'lime' : '#FFFFFF'}"
+    >shopping_cart</mat-icon>
+  </button>
+</div>
+<mat-divider></mat-divider>

@@ -1,3 +1,8 @@
-<div *ngFor="let item of items">
-    <app-item [item]="item"></app-item>
-</div>
+<mat-list>
+  <mat-list-item *ngFor="let item of shoppinglist?.items">
+    <app-item
+      [shoppinglist]="shoppinglist"
+      [item]="item"
+    ></app-item>
+  </mat-list-item>
+</mat-list>

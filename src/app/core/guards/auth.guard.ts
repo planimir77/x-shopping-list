@@ -6,7 +6,7 @@ import { AuthService } from '../services';
 
 @Injectable()
 export class AuthGuard implements CanActivateChild {
-  
+
   constructor(
     private authService: AuthService,
     private router: Router
@@ -22,11 +22,12 @@ export class AuthGuard implements CanActivateChild {
         return typeof isLoggedFromData !== 'boolean' || isLoggedFromData === !!user;
       }),
       tap((canContinue) => {
-        if (canContinue) { return true; }
-        this.router.navigateByUrl("/user/login");
+        if (canContinue) { return; }
+        const url = this.router.url;
+        this.router.navigateByUrl(url);
       }),
       first()
     );
   }
-  
+
 }
