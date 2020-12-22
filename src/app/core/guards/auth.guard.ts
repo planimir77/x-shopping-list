@@ -22,9 +22,8 @@ export class AuthGuard implements CanActivateChild {
         return typeof isLoggedFromData !== 'boolean' || isLoggedFromData === !!user;
       }),
       tap((canContinue) => {
-        if (canContinue) { return; }
-        const url = this.router.url;
-        this.router.navigateByUrl(url);
+        if (canContinue) { return true; }
+        this.router.navigateByUrl("/user/login");
       }),
       first()
     );
