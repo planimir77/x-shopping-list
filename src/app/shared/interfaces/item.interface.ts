@@ -2,7 +2,7 @@ import { IBase, IShoppinglist, IUser,  } from '.';
 
 export interface IItem extends IBase{
     itemName: string,
-    subscribers: IShoppinglist[],
+    subscribers: string[],
     shoppinglists: IShoppinglist[],
     userId: IUser,
 }
