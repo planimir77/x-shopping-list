@@ -17,19 +17,26 @@ export class ShoppinglistService {
     return this.httpClient.post<IShoppinglist>(
       `${apiUrl}/api/shoppinglists/update`,
       { shoppinglistId, itemId },
-    );
-  }
-  // post("/api/shoppinglists/create")
-  createShoppinglist(data: any): Observable<IShoppinglist> {
-    return this.httpClient.post<IShoppinglist>(
+      );
+    }
+    // post("/api/shoppinglists/create")
+    createShoppinglist(data: any): Observable<IShoppinglist> {
+      return this.httpClient.post<IShoppinglist>(
         `${apiUrl}/api/shoppinglists/create`,
         data,
-      );
-  }
-  // get("/api/shoppinglists/:id")
-  loadShoppinglist(id: string): Observable<IShoppinglist> {
-    return this.httpClient.get<IShoppinglist>(
-      `${apiUrl}/api/shoppinglists/${id}`
-      );
-  }
-}
+        );
+      }
+      // get("/api/shoppinglists")
+      loadUserShoppinglists(): Observable<IShoppinglist> {
+        return this.httpClient.get<IShoppinglist>(
+          `${apiUrl}/api/shoppinglists`
+          );
+      }
+      // get("/api/shoppinglists/:id")
+      loadShoppinglist(id: string): Observable<IShoppinglist> {
+        return this.httpClient.get<IShoppinglist>(
+          `${apiUrl}/api/shoppinglists/${id}`
+          );
+        }
+      }
+      
