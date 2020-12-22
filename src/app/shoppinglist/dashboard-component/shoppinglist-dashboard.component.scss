@@ -1,0 +1,37 @@
+
+  
+  .dashboard-card {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    right: 30px;
+    bottom: 30px;
+    background-color: #ffffff21;
+    
+  }
+  
+  .card-title {
+    color: #dac7fc;
+  }
+  
+  .more-button {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+  } 
+  
+  .dashboard-card-content {
+    text-align: start;
+    padding-left: 3%;
+    color: rgb(15, 1, 1);
+  }
+  
+  ::ng-deep .mat-menu{
+    background-color:rgba(255, 255, 255, 0);
+    width: 30px;
+  }
+
+  ::ng-deep .mat-card{
+    padding: 50px !important;
+    border-radius: 20px !important;
+  }
