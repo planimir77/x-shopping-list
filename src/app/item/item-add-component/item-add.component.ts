@@ -1,13 +1,14 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { ItemService, ShoppinglistService } from '../../core/services';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { IShoppinglist } from 'src/app/shared/interfaces';
+import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-item-add',
   templateUrl: './item-add.component.html',
-  styleUrls: ['./item-add.component.scss']
+  styleUrls: ['./item-add.component.scss'],
 })
 export class ItemAddComponent implements OnInit {
 
@@ -16,11 +17,15 @@ export class ItemAddComponent implements OnInit {
   public addFormGroup: FormGroup;
   isLoading = false;
   errorMessage = '';
+  horizontalPosition: MatSnackBarHorizontalPosition = 'center';
+  verticalPosition: MatSnackBarVerticalPosition = 'top';
+  encapsulation: ViewEncapsulation.None; 
 
   constructor(
     private itemService: ItemService,
     private shoppinglistService: ShoppinglistService,
-    private router: Router
+    private router: Router,
+    public _snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
@@ -63,6 +68,15 @@ export class ItemAddComponent implements OnInit {
                   console.log(err);
                 }
               });
+          }else {
+            this.errorMessage = `You already added a ${itemName}`;
+            this._snackBar.open(this.errorMessage, '', {
+              duration: 3000,
+              panelClass: ['warning'],
+              horizontalPosition: this.horizontalPosition,
+              verticalPosition: this.verticalPosition,
+            });
+            //setTimeout(function (){return this.errorMessage = ""}, 5000);
           }
         } else {
           // Create item
@@ -79,6 +93,5 @@ export class ItemAddComponent implements OnInit {
             });
         }
       });
-
   }
 }

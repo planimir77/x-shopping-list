@@ -3,8 +3,7 @@ import { Router } from '@angular/router';
 import { ShoppinglistService } from 'src/app/core/services';
 import { IShoppinglist } from 'src/app/shared/interfaces';
 import { map } from 'rxjs/operators';
-import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
-import { MatMenuTrigger } from '@angular/material/menu';
+import { BreakpointObserver } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,9 +12,9 @@ import { MatMenuTrigger } from '@angular/material/menu';
 })
 export class ShoppinglistDashboardComponent implements OnInit {
 
-  @Output() menuClosed: EventEmitter<void>
+
   shoppinglists: IShoppinglist = null;
-  @ViewChild(MatMenuTrigger) triggerBtn: MatMenuTrigger;
+  isMenuOpen: boolean = false;
   cards = this.breakpointObserver.observe(['(min-width: 768.99px)']).pipe(
     map(({ matches }) => {
       if (matches) {
@@ -36,18 +35,34 @@ export class ShoppinglistDashboardComponent implements OnInit {
         return this.router.navigate(['/shoppinglist/create']);
       }
     });
-    
+
   }
 
   ngOnInit(): void {
   }
 
   onClick(event: any): void {
-    if (event === this) {
-      console.log('button clicked')
-    }else if (this.triggerBtn.menuClosed.closed){
+    if (!this.isMenuOpen) {
       this.router.navigate(['/shoppinglist', event]);
     }
   }
+  menuOpened() {
+    this.isMenuOpen = true;
+  }
+  menuClosed() {
+    this.isMenuOpen = false;
+  }
 
+  delete(shoppinglistId, index: string,) {
+    this.shoppinglistService.deleteShoppinglist(shoppinglistId)
+      .subscribe({
+        next: (response) => {
+          this.shoppinglists.splice(index, 1); 
+          console.log(response);
+        },
+        error: (err) => {
+          console.log(err);
+        }
+      });
+  }
 }

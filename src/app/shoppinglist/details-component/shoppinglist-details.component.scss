@@ -3,13 +3,25 @@
     justify-content: space-around !important;
     min-width: 50% !important;
 }
+:host {
+    .mat-icon {
+      font-size: 36px;
+    }
+  }
 .mat-tab-group {
     margin-top: 30px;
 }
 h1 { 
     margin-bottom: 0px;
     position: relative;
-    top: 50px;
-    left: 50%; 
+    top: 1rem;
+    left: 51%; 
     transform: translate(-50%)
+}
+.trim {
+    @media (min-width: 665px) {
+        max-width: 600px !important;
+    }
+    margin:auto !important;
+    position: relative !important;
 }

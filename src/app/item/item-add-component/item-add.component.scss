@@ -4,15 +4,22 @@
 :host {
   .mat-icon {
     font-size: 32px;
-    color: green;
+    color: lime;
   }
 }
 form {
-  margin-bottom: -18px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  width: 20em !important;
 }
 button:focus, 
 button:active:focus, 
 button.active:focus {
     outline: none !important;
     outline-style: none !important;
+}
+::ng-deep .warning{
+  background: yellow !important;
+  color: black !important;
+  margin-top: 158px !important;
 }
