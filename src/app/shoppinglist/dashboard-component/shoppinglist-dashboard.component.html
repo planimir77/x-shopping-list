@@ -30,9 +30,10 @@
               </mat-menu>
             </mat-card-title>
           </mat-card-header>
+          <mat-divider></mat-divider>
           <mat-card-content
             class="dashboard-card-content"
-            *ngFor="let item of shoppinglist.items"
+            *ngFor="let item of shoppinglist.items.slice(0, 5)"
           >
             <div>{{ item.itemName }}</div>
           </mat-card-content>
