@@ -32,6 +32,14 @@ export class ItemService {
       { itemId, shoppinglistId },
     );
   }
+  // post("/api/item/subscribe")
+  subscribe(itemId: string, shoppinglistId: string) {
+    return this.httpClient.post<IItem>(
+      `${apiUrl}/api/item/subscribe`,
+      { itemId, shoppinglistId },
+    );
+  }
+
   // get("/api/item/:itemId&shoppinglistId")
   loadItem(_id: string): Observable<IItem> {
     return this.httpClient.get<IItem>(
