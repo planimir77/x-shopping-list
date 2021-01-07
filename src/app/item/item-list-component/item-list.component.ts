@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { IShoppinglist } from 'src/app/shared/interfaces';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { IItem, IShoppinglist } from 'src/app/shared/interfaces';
 
 @Component({
   selector: 'app-item-list',
@@ -9,10 +9,14 @@ import { IShoppinglist } from 'src/app/shared/interfaces';
 export class ItemListComponent implements OnInit {
 
   @Input() shoppinglist: IShoppinglist;
+  @Output() itemChange = new EventEmitter<string>();
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  itemChanged(value: string){
+    this.itemChange.emit(value);
+  }
 }

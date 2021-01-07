@@ -3,6 +3,7 @@
     <app-item
       [shoppinglist]="shoppinglist"
       [item]="item"
+      (itemChange)="itemChanged($event)"
     ></app-item>
   </mat-list-item>
 </mat-list>
