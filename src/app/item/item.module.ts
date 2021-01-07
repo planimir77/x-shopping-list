@@ -5,6 +5,9 @@ import { MaterialModule } from '../material/material.module';
 import { ReactiveFormsModule } from "@angular/forms";
 import { ItemListComponent } from './item-list-component/item-list.component';
 import { ItemComponent } from './item/item.component';
+import { ItemSubscribedListComponent } from './item-subscribed-list/item-subscribed-list.component';
+import { ItemSubscribedComponent } from './item-subscribed/item-subscribed.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -12,17 +15,22 @@ import { ItemComponent } from './item/item.component';
   declarations: [
     ItemAddComponent, 
     ItemListComponent, 
-    ItemComponent
+    ItemComponent,
+    ItemSubscribedListComponent,
+    ItemSubscribedComponent,
   ],
   imports: [
     CommonModule,
     MaterialModule,
     ReactiveFormsModule,
+    SharedModule,
   ],
   exports: [
     ItemAddComponent,
     ItemListComponent,
     ItemComponent,
+    ItemSubscribedListComponent,
+    ItemSubscribedComponent,
   ]
 })
 export class ItemModule { }

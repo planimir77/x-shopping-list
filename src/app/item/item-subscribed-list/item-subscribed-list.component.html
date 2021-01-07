@@ -1,0 +1,8 @@
+<mat-list>
+    <mat-list-item *ngFor="let item of shoppinglist?.items">
+      <app-item-subscribed
+        [item]="item"
+        [shoppinglistId]="shoppinglist._id"
+      ></app-item-subscribed>
+    </mat-list-item>
+  </mat-list>
