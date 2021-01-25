@@ -4,6 +4,7 @@ import { CapitalizePipe } from './pipes/capitalize.pipe';
 import { LoadingComponent } from './loading/loading.component';
 import { MaterialModule } from '../material/material.module';
 import { EndWithSPipe } from './pipes/end-with-s.pipe';
+import { TwoRowsPipe } from './pipes/two-rows.pipe';
 
 
 
@@ -11,7 +12,8 @@ import { EndWithSPipe } from './pipes/end-with-s.pipe';
   declarations: [
     CapitalizePipe,
     LoadingComponent,
-    EndWithSPipe
+    EndWithSPipe,
+    TwoRowsPipe
   ],
   imports: [
     CommonModule,
@@ -20,7 +22,8 @@ import { EndWithSPipe } from './pipes/end-with-s.pipe';
   exports: [
     CapitalizePipe,
     LoadingComponent,
-    EndWithSPipe
+    EndWithSPipe,
+    TwoRowsPipe
   ],
 })
 export class SharedModule { }
