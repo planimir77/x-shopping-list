@@ -91,31 +91,32 @@
               </small>
             </p>
           </div>
-          <div
-            class="custom-control custom-control-alternative custom-checkbox"
-          >
-            <input
-              class="custom-control-input"
-              id=" customCheckLogin"
-              type="checkbox"
-            />
-            <label class="custom-control-label" for=" customCheckLogin">
-              <span>Remember me</span>
-            </label>
+          <div class="form-group mt-4">
+            <div class="input-group input-group-alternative justify-content-center">
+              <input
+                class="checkbox-margin"
+                formControlName="rememberMe"
+                type="checkbox"
+              />
+              <label>
+                <span>Remember me</span>
+              </label>
+            </div>
           </div>
           <p *ngIf="errorMessage" class="text-danger text-center mb-0 mt-1">
-            {{errorMessage}}
+            {{ errorMessage }}
           </p>
           <!-- Loading -->
           <app-loading [isLoading]="isLoading"></app-loading>
-           <!-- Submit -->
+          <!-- Submit -->
           <div class="text-center">
-            <button 
-            type="submit" 
-            class="btn btn-primary my-4" 
-            [disabled]="loginForm.invalid"
+            <button
+              type="submit"
+              class="btn btn-primary my-4"
+              [disabled]="loginForm.invalid"
             >
-            Login</button>
+              Login
+            </button>
           </div>
         </form>
       </div>
