@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
 
   focus;
   focus1;
-  
+
   loginForm: FormGroup;
   isLoading = false;
   errorMessage = '';
@@ -33,6 +33,7 @@ export class LoginComponent implements OnInit {
         Validators.required,
         Validators.minLength(5),
       ]),
+      rememberMe: new FormControl('', []),
     });
   }
 
@@ -45,7 +46,8 @@ export class LoginComponent implements OnInit {
 
   get email() { return this.loginForm.get('email') };
   get password() { return this.loginForm.get('password') };
-  
+  get rememberMe() { return this.loginForm.get('rememberMe') };
+
   onSubmit(): void {
     const data = this.loginForm.value;
 
