@@ -38,10 +38,10 @@ export class ShoppinglistService {
       `${apiUrl}/api/shoppinglists/${id}`
     );
   }
-  // delete("/api/shoppinglists/:shoppinglistId")
-  deleteShoppinglist(shoppinglistId: string): Observable<IShoppinglist> {
+  // delete("/api/shoppinglists/:id")
+  deleteShoppinglist(id: string): Observable<IShoppinglist> {
     return this.httpClient.delete<IShoppinglist>(
-      `${apiUrl}/api/shoppinglists/${shoppinglistId}`
+      `${apiUrl}/api/shoppinglists/${id}`
     );
   }
 }
