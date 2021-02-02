@@ -1,10 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CapitalizePipe } from './pipes/capitalize.pipe';
-import { LoadingComponent } from './loading/loading.component';
 import { MaterialModule } from '../material/material.module';
 import { EndWithSPipe } from './pipes/end-with-s.pipe';
 import { TwoRowsPipe } from './pipes/two-rows.pipe';
+import { LoadingComponent } from './components/loading/loading.component';
+import { PrivacyPolicyDialogComponent } from './components/privacy-policy/dialog/privacy-policy-dialog.component';
+import { PrivacyPolicyContentComponent } from './components/privacy-policy/content/privacy-policy-content.component';
+import { PrivacyPolicyPageComponent } from './components/privacy-policy/page/privacy-policy-page.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 
@@ -13,7 +17,11 @@ import { TwoRowsPipe } from './pipes/two-rows.pipe';
     CapitalizePipe,
     LoadingComponent,
     EndWithSPipe,
-    TwoRowsPipe
+    TwoRowsPipe,
+    PrivacyPolicyDialogComponent,
+    PrivacyPolicyContentComponent,
+    PrivacyPolicyPageComponent,
+    FooterComponent,
   ],
   imports: [
     CommonModule,
@@ -23,7 +31,10 @@ import { TwoRowsPipe } from './pipes/two-rows.pipe';
     CapitalizePipe,
     LoadingComponent,
     EndWithSPipe,
-    TwoRowsPipe
+    TwoRowsPipe,
+    PrivacyPolicyDialogComponent,
+    PrivacyPolicyPageComponent,
+    FooterComponent,
   ],
 })
 export class SharedModule { }
