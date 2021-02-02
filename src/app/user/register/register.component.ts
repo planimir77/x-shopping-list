@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { PrivacyPolicyDialogComponent } from 'src/app/shared/components/privacy-policy/dialog/privacy-policy-dialog.component';
 import { AuthService } from '../../core/services/auth.service';
 
 @Component({
@@ -19,7 +21,8 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private router: Router) {
+    private router: Router,
+    public dialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -40,6 +43,9 @@ export class RegisterComponent implements OnInit {
       rePassword: new FormControl('', [
         Validators.required,
       ]),
+      privacyPolicy: new FormControl('', [
+        Validators.requiredTrue
+      ]),
         
     });
   }
@@ -54,22 +60,35 @@ export class RegisterComponent implements OnInit {
   get email() { return this.form.get('email') };
   get password() { return this.form.get('password') };
   get rePassword() { return this.form.get('rePassword') };
+  get privacyPolicy() { return this.form.get('privacyPolicy') };
 
   onSubmit(): void {
     const data = this.form.value;
+  
     this.isLoading = true;
 
-    this.authService.register(data).subscribe({
-      next: (response) => {
-        console.log(response);
-        this.isLoading = false;
-        this.router.navigate(['/user/login']);
-      },
-      error: (err) => {
-        this.isLoading = false;
-        console.log(err);
+    if (data.privacyPolicy) {
+      this.authService.register(data).subscribe({
+        next: (response) => {
+          console.log(response);
+          this.isLoading = false;
+          this.router.navigate(['/user/login']);
+        },
+        error: (err) => {
+          this.isLoading = false;
+          console.log(err);
+        }
+      });
+    }
+
+  }
+  openDialog() {
+    const dialogRef = this.dialog.open(PrivacyPolicyDialogComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.form.controls.privacyPolicy.setValue(result);
       }
     });
   }
-
 }
