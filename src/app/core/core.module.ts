@@ -5,13 +5,12 @@ import { ShoppinglistService, AuthService } from './services';
 import { AuthGuard } from './guards/auth.guard';
 import { storageServiceProvider } from './services/storage.service';
 import { appInterceptorProvider } from './app.interceptor';
-import { FooterComponent } from './footer/footer.component';
 import { ItemService } from './services/item.service';
 
 
 
 @NgModule({
-  declarations: [FooterComponent],
+  declarations: [],
   imports: [
     CommonModule,
     RouterModule,
@@ -24,8 +23,6 @@ import { ItemService } from './services/item.service';
     AuthGuard,
     appInterceptorProvider
   ],
-  exports: [
-    FooterComponent
-  ],
+  exports: [],
 })
 export class CoreModule { }
