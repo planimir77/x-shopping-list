@@ -6,9 +6,9 @@ import { ShoppinglistDashboardComponent } from './dashboard-component/shoppingli
 import { ShoppinglistDetailsComponent } from './details-component/shoppinglist-details.component';
 
 const routes: Routes = [
-  { path: 'create', component: ShoppinglistCreateComponent, data: { isLogged: true, } },
-  { path: 'dashboard', component: ShoppinglistDashboardComponent, data: { isLogged: true, } },
-  { path: ':id', component: ShoppinglistDetailsComponent },
+  { path: 'create', component: ShoppinglistCreateComponent, data: { isLogged: true, title: 'Create'} },
+  { path: 'dashboard', component: ShoppinglistDashboardComponent, data: { isLogged: true, title: 'Dashboard'} },
+  { path: ':id', component: ShoppinglistDetailsComponent, data: { title: 'Details'} },
 ];
 
 @NgModule({
