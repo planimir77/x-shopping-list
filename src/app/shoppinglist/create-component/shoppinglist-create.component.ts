@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ShoppinglistService } from '../../core/services';
-import {FormGroup, FormControl, Validators} from '@angular/forms';
+import { FormGroup, FormControl, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators'
 
 @Component({
   selector: 'app-shoppinglist-create',
@@ -10,20 +12,38 @@ import {FormGroup, FormControl, Validators} from '@angular/forms';
 })
 export class ShoppinglistCreateComponent implements OnInit {
 
-  title = 'Create Shopping List';
-
   public addShopFormGroup: FormGroup;
   isLoading = false;
 
   constructor(
     private shoppinglistService: ShoppinglistService,
     private router: Router
-    ) { }
+  ) { }
 
   ngOnInit(): void {
     this.addShopFormGroup = new FormGroup({
-      shoppinglistName : new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]),
+      shoppinglistName: new FormControl('', [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(20),
+        this.whitespaceValidator,
+      ]),
     });
+  }
+
+  public whitespaceValidator(control: FormControl): ValidationErrors {
+    let isValid = null;
+    if (
+      control.value.length < 3 ||
+      (control.value.trim().length === control.value.length)) {
+      return;
+    } else {
+      const isWhitespace = control.value.trim().length === 0;
+      isValid = !isWhitespace;
+      isValid = control.value.trim().length >= 3;
+
+    }
+    return isValid ? null : { 'whitespace': true };
   }
 
   public checkError = (controlName: string, errorName: string) => {
@@ -31,10 +51,11 @@ export class ShoppinglistCreateComponent implements OnInit {
   }
 
   onSubmit(): void {
-    const input = this.addShopFormGroup.value
+    debugger;
+    const input = this.capitalize(this.addShopFormGroup.value);
 
     this.isLoading = true;
-    
+
     this.shoppinglistService.createShoppinglist(input)
       .subscribe({
         next: (response) => {
@@ -46,6 +67,13 @@ export class ShoppinglistCreateComponent implements OnInit {
           console.log(err);
         }
       });
+  }
+  capitalize(obj: any): any {
+    //obj.shoppinglistName = obj.shoppinglistName[0].toUpperCase() + obj.shoppinglistName.substr(1);
+    const shoppinglistName = obj.shoppinglistName.trim();
+    const firstLetter = shoppinglistName[0];
+    obj.shoppinglistName = shoppinglistName.replace(firstLetter, firstLetter.toUpperCase());
+    return obj;
   }
 
 }
