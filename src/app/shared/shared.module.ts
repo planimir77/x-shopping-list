@@ -8,7 +8,6 @@ import { LoadingComponent } from './components/loading/loading.component';
 import { PrivacyPolicyDialogComponent } from './components/privacy-policy/dialog/privacy-policy-dialog.component';
 import { PrivacyPolicyContentComponent } from './components/privacy-policy/content/privacy-policy-content.component';
 import { PrivacyPolicyPageComponent } from './components/privacy-policy/page/privacy-policy-page.component';
-import { FooterComponent } from './components/footer/footer.component';
 
 
 
@@ -21,7 +20,6 @@ import { FooterComponent } from './components/footer/footer.component';
     PrivacyPolicyDialogComponent,
     PrivacyPolicyContentComponent,
     PrivacyPolicyPageComponent,
-    FooterComponent,
   ],
   imports: [
     CommonModule,
@@ -34,7 +32,6 @@ import { FooterComponent } from './components/footer/footer.component';
     TwoRowsPipe,
     PrivacyPolicyDialogComponent,
     PrivacyPolicyPageComponent,
-    FooterComponent,
   ],
 })
 export class SharedModule { }
