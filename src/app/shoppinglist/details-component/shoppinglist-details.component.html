@@ -1,28 +1,46 @@
-<div class="m-4">
-  <h1 class="text-center mt-2">
+<div class="py-5">
+  <h1 class="text-center pt-2">
     {{ shoppinglist?.shoppinglistName | capitalize }}
   </h1>
-  <mat-tab-group dynamicHeight animationDuration="500ms" class="trim">
+  <mat-tab-group
+    dynamicHeight
+    animationDuration="500ms"
+    class="tab-group"
+    #tabGroup
+    (click)="onTabGroupClicked()"
+  >
     <mat-tab>
       <ng-template mat-tab-label>
-        <mat-icon class="example-tab-icon">home</mat-icon>
+        <mat-icon class="example-tab-icon">playlist_add_check</mat-icon>
       </ng-template>
+      <!-- item add -->
       <app-item-add
         [shoppinglist]="shoppinglist"
         (itemAdded)="onItemAdded($event)"
       ></app-item-add>
-      <app-item-list 
+      <!-- item list -->
+      <app-item-list
+        [items]="items"
         [shoppinglist]="shoppinglist"
-        (itemChange)="itemChanged($event)"
+        (itemChange)="onItemChanged($event)"
+        (itemRemoved)="itemRemove($event)"
       ></app-item-list>
     </mat-tab>
     <mat-tab>
       <ng-template mat-tab-label>
         <mat-icon class="example-tab-icon">shopping_cart</mat-icon>
       </ng-template>
+      <!-- item subscribed list -->
       <app-item-subscribed-list
-        [shoppinglist]="shoppinglist"
+        [subscribedItems]="subscribedItems"
+        [isDone]="isDone"
+        [items]="items"
+        [shoppinglistId]="shoppinglist?._id"
+        (itemChange)="onItemChanged($event)"
       ></app-item-subscribed-list>
     </mat-tab>
   </mat-tab-group>
+  <!-- Loading -->
+  <app-loading [isLoading]="!shoppinglist"></app-loading>
+  <!-- Loading -->
 </div>

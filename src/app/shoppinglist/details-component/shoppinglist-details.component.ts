@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ItemService, ShoppinglistService } from 'src/app/core/services';
+import { ShoppinglistService } from 'src/app/core/services';
 import { IItem, IShoppinglist } from 'src/app/shared/interfaces';
 
 @Component({
@@ -11,12 +12,16 @@ import { IItem, IShoppinglist } from 'src/app/shared/interfaces';
 export class ShoppinglistDetailsComponent implements OnInit {
 
   @Input() shoppinglist: IShoppinglist = null;
+  @Input() items: IItem[] = null;
+  @ViewChild('tabGroup') tabGroup;
+  isDone: boolean = false;
+  subscribedItems: boolean;
 
   constructor(
     private shoppinglistService: ShoppinglistService,
-    private itemService: ItemService,
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private titleService: Title
   ) { }
 
   ngOnInit(): void {
@@ -28,10 +33,13 @@ export class ShoppinglistDetailsComponent implements OnInit {
     this.shoppinglistService.loadShoppinglist(shoppinglistId)
       .subscribe(
         shoppinglist => {
+          this.items = shoppinglist.items;
           this.shoppinglist = shoppinglist;
           if (!shoppinglist) {
             return this.router.navigate(['/']);
           }
+
+          this.setTitle(this.shoppinglist.shoppinglistName);
         },
         err => {
           if (err.status === 401) {
@@ -43,27 +51,54 @@ export class ShoppinglistDetailsComponent implements OnInit {
       );
   }
 
-  onItemAdded(item: IItem): void {
-    this.update();
+  /**
+   * Set the title according to the current shoppinglist name
+   * @param shoppinglistName 
+   */
+  setTitle(shoppinglistName: string): void {
+    const currentTitle = this.titleService.getTitle();
+    this.titleService.setTitle(currentTitle.replace('XShoppingList', shoppinglistName));
   }
 
-  itemChanged(itemId: string): void {
-    const index = this.shoppinglist.items.findIndex(item => item._id === itemId);
-    this.itemService.subscribe(itemId, this.shoppinglist._id).subscribe({
-      next: (response) => {
-        this.shoppinglist.items[index] = response;
-      },
-      error: (err) => {
-        //this.isLoading = false;
-        console.log(err);
-        if (err.status === 401) {
-          this.router.navigateByUrl('/user/login');
-        }else if(err.status === 0){ 
-          alert('No internet connection');
-        } else {
-          this.router.navigateByUrl('/error-page');
-        }
-      }
-    })
+  onItemAdded(item: IItem): void {
+    this.items.push(item);
+  }
+
+  onItemChanged(newItem: any): void {
+    const index = this.getItemIndex(newItem._id);
+
+    this.items.splice(index, 1, newItem);
+
+    this.setSubscribedItems();
+    this.setIsDone();
+  }
+
+  itemRemove(itemId: string): void {
+    debugger;
+    const index = this.getItemIndex(itemId);
+
+    this.items.splice(index, 1);
+  }
+
+  getItemIndex(itemId: string): number {
+    const item = this.items.find(item => item._id === itemId);
+    return this.items.indexOf(item);
+  }
+
+  setIsDone(): void {
+    const secondTabSelected = this.tabGroup.selectedIndex === 1;
+
+    this.isDone = secondTabSelected && !(this.subscribedItems);
+  }
+
+  onTabGroupClicked(): void {
+    this.setSubscribedItems();
+    if (this.tabGroup.selectedIndex === 0) {
+      setTimeout(() => this.isDone = false, 500);
+    }
+  }
+
+  setSubscribedItems(): void {
+    this.subscribedItems = this.items?.some(item => item.subscribers.includes(this.shoppinglist._id));
   }
 }
