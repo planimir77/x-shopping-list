@@ -8,16 +8,10 @@
   }
 }
 form {
-  margin-left: auto !important;
-  margin-right: auto !important;
-  width: 20em !important;
+  padding-top: 3rem !important;
+  padding-left: 1.4rem !important;
 }
-button:focus, 
-button:active:focus, 
-button.active:focus {
-    outline: none !important;
-    outline-style: none !important;
-}
+
 ::ng-deep .warning{
   background: yellow !important;
   color: black !important;

@@ -76,7 +76,6 @@ export class ItemAddComponent implements OnInit {
               horizontalPosition: this.horizontalPosition,
               verticalPosition: this.verticalPosition,
             });
-            //setTimeout(function (){return this.errorMessage = ""}, 5000);
           }
         } else {
           // Create item
