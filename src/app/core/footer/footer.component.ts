@@ -13,12 +13,7 @@ export class FooterComponent implements OnInit {
 
   ngOnInit(): void {
     if ((this.dateNow.getFullYear() - this.initialDate) !== 0) {
-      this.dateNowToString = '-' + this.dateNow.getFullYear();
+      this.dateNowToString = ' - ' + this.dateNow.getFullYear();
     }
-  }
-
-  isNotSameYear(): boolean {
-    this.dateNow.getFullYear() - this.initialDate;
-    return false;//(this.dateNow.getFullYear() - this.initialDate) === 1;
   }
 }
