@@ -1,9 +1,7 @@
-import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ShoppinglistService } from 'src/app/core/services';
 import { IShoppinglist } from 'src/app/shared/interfaces';
-import { map } from 'rxjs/operators';
-import { BreakpointObserver } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,19 +13,11 @@ export class ShoppinglistDashboardComponent implements OnInit {
 
   shoppinglists: IShoppinglist = null;
   isMenuOpen: boolean = false;
-  cards = this.breakpointObserver.observe(['(min-width: 768.99px)']).pipe(
-    map(({ matches }) => {
-      if (matches) {
-        return "1";
-      }
-      return "2";
-    })
-  );
+  isFavoriteClicked: boolean = false;
 
   constructor(
     private shoppinglistService: ShoppinglistService,
     private router: Router,
-    private breakpointObserver: BreakpointObserver
   ) {
     shoppinglistService.loadUserShoppinglists().subscribe(shoppinglists => {
       this.shoppinglists = shoppinglists;
@@ -42,9 +32,17 @@ export class ShoppinglistDashboardComponent implements OnInit {
   }
 
   onClick(event: any): void {
-    if (!this.isMenuOpen) {
-      this.router.navigate(['/shoppinglist', event]);
+    if (this.isMenuOpen || this.isFavoriteClicked) {
+      return;
     }
+    this.router.navigate(['/shoppinglist', event]);
+  }
+
+  onFavoriteClick(id: string): void { 
+    this.isFavoriteClicked = true;
+    setTimeout(() => {
+      this.isFavoriteClicked = false;
+    }, 1000);
   }
   menuOpened() {
     this.isMenuOpen = true;
@@ -53,12 +51,13 @@ export class ShoppinglistDashboardComponent implements OnInit {
     this.isMenuOpen = false;
   }
 
-  delete(shoppinglistId, index: string,) {
+  delete(shoppinglistId: string, index: string,) {
     this.shoppinglistService.deleteShoppinglist(shoppinglistId)
       .subscribe({
         next: (response) => {
-          this.shoppinglists.splice(index, 1); 
-          console.log(response);
+          if(response){
+            this.shoppinglists.splice(index, 1);
+          }
         },
         error: (err) => {
           console.log(err);

@@ -1,44 +1,68 @@
-<div [ngClass]="(cards | async) === '1' ? 'container' : 'container-fluid'">
-  <div class="grid-container mx-3 my-5">
-    <h1 class="mat-h1 text-center">Dashboard</h1>
-    <mat-grid-list cols="2" rowHeight="350px" [gutterSize]="'20px'">
-      <mat-grid-tile
-        *ngFor="let shoppinglist of shoppinglists; let i = index;"
-        [colspan]="cards | async"
-        [rowspan]="1"
-      >
-        <mat-card (click)="onClick(shoppinglist._id)" class="dashboard-card" #matcard>
-          <mat-card-header>
-            <mat-card-title class="card-title">
-              {{ shoppinglist.shoppinglistName }}
-              <button
-                mat-icon-button
-                class="more-button"
-                [matMenuTriggerFor]="menu"
-                aria-label="Toggle menu"
-                (menuOpened)="menuOpened()"
-                (menuClosed)="menuClosed()"
-              >
-                <mat-icon>more_vert</mat-icon>
-              </button>
-              <mat-menu #menu="matMenu" xPosition="before" class="mat-menu">
-                <button mat-menu-item (click)="delete(shoppinglist._id , i)">
-                  
-                    <span class="material-icons md-light">delete</span>
-                  
-                </button>
-              </mat-menu>
-            </mat-card-title>
-          </mat-card-header>
-          <mat-divider></mat-divider>
-          <mat-card-content
-            class="dashboard-card-content"
-            *ngFor="let item of shoppinglist.items.slice(0, 5)"
+<div class="container">
+  <h1>Dashboard</h1>
+  <!-- Loading -->
+  <app-loading [isLoading]="!shoppinglists"></app-loading>
+  <!-- Loading -->
+  <div
+    class="content"
+    fxLayout="row wrap"
+    fxLayout.xs="column"
+    fxLayoutAlign="space-around center"
+  >
+    <mat-card
+      *ngFor="let shoppinglist of shoppinglists; let i = index"
+      fxFlex="calc(33%)"
+      fxFlex.sm="calc(50%)"
+      (click)="onClick(shoppinglist._id)"
+      matRipple
+    >
+      <mat-card-header class="mb-4">
+        <mat-card-title class="card-title">
+          {{ shoppinglist.shoppinglistName }}
+          <button
+          (click)="onFavoriteClick(shoppinglist._id)"
+            mat-icon-button
+            class="button-left-corner"
           >
-            <div>{{ item.itemName }}</div>
-          </mat-card-content>
-        </mat-card>
-      </mat-grid-tile>
-    </mat-grid-list>
+            <mat-icon class="favorite-icon">star_outline</mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            class="button-right-corner"
+            [matMenuTriggerFor]="menu"
+            aria-label="Toggle menu"
+            (menuOpened)="menuOpened()"
+            (menuClosed)="menuClosed()"
+          >
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu" xPosition="before" class="mat-menu mat-menu-background">
+            <button class="edit-button" mat-menu-item (click)="delete(shoppinglist._id, i)">
+              <mat-icon [ngStyle]="{ color: 'orange' }">edit</mat-icon
+              ><span [ngStyle]="{ color: 'khaki' }"
+                >Edit {{ shoppinglist.shoppinglistName }}</span
+              >
+            </button>
+            <mat-divider></mat-divider>
+            <button class="delete-button" mat-menu-item (click)="delete(shoppinglist._id, i)">
+              <mat-icon [ngStyle]="{ color: '#ff1f00' }">remove_circle</mat-icon
+              ><span [ngStyle]="{ color: 'khaki' }"
+                >Remove {{ shoppinglist.shoppinglistName }}</span
+              >
+            </button>
+          </mat-menu>
+        </mat-card-title>
+        <mat-card-subtitle></mat-card-subtitle>
+      </mat-card-header>
+      <mat-divider></mat-divider>
+      <div class="mt-6">
+        <mat-card-content
+          class="card-content"
+          *ngFor="let item of shoppinglist.items.slice(0, 5)"
+        >
+          <div>{{ item.itemName }}</div>
+        </mat-card-content>
+      </div>
+    </mat-card>
   </div>
 </div>

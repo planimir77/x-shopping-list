@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { ShoppinglistRoutingModule } from './shoppinglist-routing.module';
 import { MaterialModule } from '../material/material.module'
@@ -24,7 +25,8 @@ import { ShoppinglistDashboardComponent } from './dashboard-component/shoppingli
     ReactiveFormsModule,
     MaterialModule,
     SharedModule,
-    ItemModule
+    ItemModule,
+    FlexLayoutModule,
   ],
 })
 export class ShoppinglistModule { }
