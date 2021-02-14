@@ -12,10 +12,10 @@ const apiUrl = environment.apiUrl;
 export class ShoppinglistService {
   constructor(private httpClient: HttpClient) { }
 
-  // post("/api/shoppinglists/update")
-  updateShoppinglistItems(shoppinglistId: string, itemId: string): Observable<IShoppinglist> {
+  // post("/api/shoppinglists/add-item")
+  addShoppinglistItem(shoppinglistId: string, itemId: string): Observable<IShoppinglist> {
     return this.httpClient.post<IShoppinglist>(
-      `${apiUrl}/api/shoppinglists/update`,
+      `${apiUrl}/api/shoppinglists/add-item`,
       { shoppinglistId, itemId },
     );
   }
@@ -32,6 +32,12 @@ export class ShoppinglistService {
       `${apiUrl}/api/shoppinglists`
     );
   }
+  // get("/api/shoppinglists/favorite")
+  getFavoriteShoppinglist(): Observable<IShoppinglist> {
+    return this.httpClient.get<IShoppinglist>(
+      `${apiUrl}/api/shoppinglists/favorite`
+    );
+  }
   // get("/api/shoppinglists/:id")
   loadShoppinglist(id: string): Observable<IShoppinglist> {
     return this.httpClient.get<IShoppinglist>(
@@ -42,6 +48,27 @@ export class ShoppinglistService {
   deleteShoppinglist(id: string): Observable<IShoppinglist> {
     return this.httpClient.delete<IShoppinglist>(
       `${apiUrl}/api/shoppinglists/${id}`
+    );
+  }
+  // post("/api/shoppinglists/delete")
+  removeShoppinglistItem(shoppinglistId: string, itemId: string): Observable<IShoppinglist> {
+    return this.httpClient.post<IShoppinglist>(
+      `${apiUrl}/api/shoppinglists/delete`,
+      { shoppinglistId, itemId },
+    );
+  }
+  // post("/api/shoppinglists/not-favorite")
+  shoppinglistNotFavorite(shoppinglistId: string): Observable<IShoppinglist> {
+    return this.httpClient.post<IShoppinglist>(
+      `${apiUrl}/api/shoppinglists/not-favorite`,
+      { shoppinglistId },
+    );
+  }
+  // post("/api/shoppinglists/favorite")
+  shoppinglistFavorite(shoppinglistId: string): Observable<IShoppinglist> {
+    return this.httpClient.post<IShoppinglist>(
+      `${apiUrl}/api/shoppinglists/favorite`,
+      { shoppinglistId },
     );
   }
 }
