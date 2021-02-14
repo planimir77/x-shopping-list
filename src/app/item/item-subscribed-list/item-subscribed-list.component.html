@@ -1,8 +1,34 @@
-<mat-list>
-    <mat-list-item *ngFor="let item of shoppinglist?.items">
-      <app-item-subscribed
-        [item]="item"
-        [shoppinglistId]="shoppinglist._id"
-      ></app-item-subscribed>
-    </mat-list-item>
-  </mat-list>
+<mat-list class="pt-6">
+  <mat-list-item
+    matRipple
+    *ngFor="let item of items"
+    (click)="unsubscribe(item)"
+    [ngStyle]="setStyle(item)"
+  >
+    <app-item-subscribed
+      [ngStyle]="{ width: '-webkit-fill-available', 'text-align': 'center' }"
+      [item]="item"
+    ></app-item-subscribed>
+  </mat-list-item>
+</mat-list>
+<!-- check for items" -->
+<div class="pt-5 text-center" *ngIf="isDone">
+  <p class="font-24">{{done}}!</p>
+  <p class="pr-2">
+    <mat-icon [ngStyle]="{ color: 'lime', 'font-size': '48px' }">done</mat-icon>
+  </p>
+</div>
+<div class="pt-5 text-center" *ngIf="items?.length === 0; else checkItems">
+  <p class="font-24">{{noItemsYet}} !</p>
+  <p  class="pr-2">
+    <mat-icon [ngStyle]="{ color: 'lime', 'font-size': '48px' }">sentiment_very_dissatisfied</mat-icon>
+  </p>
+</div>
+<ng-template #checkItems>
+  <div class="pt-5 text-center" *ngIf="!isDone && !subscribedItems">
+    <p class="font-24">{{noCheckedItems}} !</p>
+    <p  class="pr-2">
+      <mat-icon [ngStyle]="{ color: 'lime', 'font-size': '48px' }">remove_shopping_cart</mat-icon>
+    </p>
+  </div>
+</ng-template>
