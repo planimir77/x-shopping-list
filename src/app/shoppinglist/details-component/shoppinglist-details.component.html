@@ -1,6 +1,11 @@
-<div class="py-5">
+<!-- Loading -->
+<div class="loading-center">
+  <app-loading [isLoading]="!shoppinglist"></app-loading>
+</div>
+<!-- Loading -->
+<div *ngIf="shoppinglist" class="py-5">
   <h1 class="text-center pt-2">
-    {{ shoppinglist?.shoppinglistName | capitalize }}
+    {{ shoppinglist?.shoppinglistName | titlecase }}
   </h1>
   <mat-tab-group
     dynamicHeight
@@ -40,7 +45,4 @@
       ></app-item-subscribed-list>
     </mat-tab>
   </mat-tab-group>
-  <!-- Loading -->
-  <app-loading [isLoading]="!shoppinglist"></app-loading>
-  <!-- Loading -->
 </div>

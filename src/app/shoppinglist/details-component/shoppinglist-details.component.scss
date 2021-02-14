@@ -1,16 +1,22 @@
 ::ng-deep .mat-tab-label {
-    justify-content: space-around !important;
-    min-width: 50% !important;
+  justify-content: space-around !important;
+  min-width: 50% !important;
 }
 :host {
-    .mat-icon {
-      font-size: 36px;
-    }
+  .mat-icon {
+    font-size: 36px;
   }
+}
 .tab-group {
-    @media (min-width: 665px) {
-        max-width: 600px !important;
-    }
-    margin:auto !important;
-    padding-bottom: 3rem !important;
+  @media (min-width: 665px) {
+    max-width: 600px !important;
+  }
+  margin: auto !important;
+  padding-bottom: 3rem !important;
+}
+.loading-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
