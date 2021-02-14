@@ -1,4 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+
+export interface DialogData {
+  id:string,
+  name: string,
+  index:number,
+}
 
 @Component({
   selector: 'app-shoppinglist-edit',
@@ -7,9 +14,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShoppinglistEditComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public dialogRef: MatDialogRef<ShoppinglistEditComponent>,
+    @Inject(MAT_DIALOG_DATA) 
+    public data: DialogData,
+    ) { }
 
   ngOnInit(): void {
   }
 
+  onCancelClick(): void {
+    this.dialogRef.close();
+  }
 }

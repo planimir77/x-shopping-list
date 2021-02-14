@@ -1,0 +1,17 @@
+::ng-deep .dialog-container-edit .mat-dialog-container {
+    background-image: url("/assets/images/coffee.jpg");
+    background-position: top;
+    border-radius: 18px;
+
+    .mat-dialog-actions {
+        justify-content: flex-end!important;
+    }
+    .btn-cancel:hover {
+        background-color:#fff59d85;
+        color: black;
+    }
+    .btn-ok:hover {
+        background-color: #673ab796;
+        color: white;
+    }
+}

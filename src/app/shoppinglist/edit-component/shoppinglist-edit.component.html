@@ -1,1 +1,12 @@
-<p>shoppinglist-edit works!</p>
+<h1 mat-dialog-title>{{data.name}}</h1>
+<div mat-dialog-content>
+  <p>Change your shopping list name</p>
+  <mat-form-field appearance="outline">
+    <mat-label>Shopping List New Name</mat-label>
+    <input matInput [(ngModel)]="data.name">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-stroked-button class="btn-cancel" (click)="onCancelClick()">Cancel</button>
+  <button mat-stroked-button class="btn-ok" [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+</div>
