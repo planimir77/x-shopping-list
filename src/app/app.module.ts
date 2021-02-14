@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 import { MaterialModule } from './material/material.module';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from "@angular/common/http";
@@ -27,6 +27,9 @@ import { SharedModule } from './shared/shared.module';
     LayoutModule,
     HttpClientModule,
     SharedModule
+  ],
+  providers: [
+    Title
   ],
   bootstrap: [
     AppComponent,
