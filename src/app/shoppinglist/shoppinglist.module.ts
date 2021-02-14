@@ -10,6 +10,7 @@ import { ShoppinglistDetailsComponent } from './details-component/shoppinglist-d
 import { SharedModule } from '../shared/shared.module';
 import { ItemModule } from '../item/item.module';
 import { ShoppinglistDashboardComponent } from './dashboard-component/shoppinglist-dashboard.component';
+import { ShoppinglistEditComponent } from './edit-component/shoppinglist-edit.component';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { ShoppinglistDashboardComponent } from './dashboard-component/shoppingli
     ShoppinglistCreateComponent,
     ShoppinglistDetailsComponent,
     ShoppinglistDashboardComponent,
+    ShoppinglistEditComponent,
   ],
   imports: [
     CommonModule,
