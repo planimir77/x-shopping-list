@@ -14,21 +14,20 @@
     background-position-x: right;
   }
   
-  /*  BACKGROUND IMAGE */
-  ::ng-deep .mat-sidenav-container {
-    
+  div.main-content {
+    min-height: 83%;
+    background-color: whitesmoke;
+    /*  BACKGROUND IMAGE */
     background-image: url("/assets/images/coffee.jpg");
-  
-    /* Full height */
-    height: 100%;
   
     /* Center and scale the image nicely */
     background-position: bottom;
     background-repeat: no-repeat;
     background-size: cover;
   }
-  .h-99 {
-    min-height: 83%;
+  ::ng-deep .mat-sidenav-container {
+    // /* Full height */
+    height: 100%;
   }
   a {
     text-decoration: none;

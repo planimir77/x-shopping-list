@@ -1,0 +1,14 @@
+::ng-deep .dialog-container-info .mat-dialog-container {
+  background-image: url("/assets/images/coffee.jpg");
+  background-position: center;
+  border-radius: 18px;
+  .mat-dialog-actions {
+    justify-content: flex-end !important;
+  }
+  .btn-ok:hover {
+    background-color: #673ab796 !important;
+  }
+}
+.content {
+    margin-right: 4rem !important;
+}

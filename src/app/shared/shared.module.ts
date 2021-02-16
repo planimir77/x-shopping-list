@@ -8,6 +8,7 @@ import { LoadingComponent } from './components/loading/loading.component';
 import { PrivacyPolicyDialogComponent } from './components/privacy-policy/dialog/privacy-policy-dialog.component';
 import { PrivacyPolicyContentComponent } from './components/privacy-policy/content/privacy-policy-content.component';
 import { PrivacyPolicyPageComponent } from './components/privacy-policy/page/privacy-policy-page.component';
+import { InfoComponent } from './components/info/info.component';
 
 
 
@@ -20,6 +21,7 @@ import { PrivacyPolicyPageComponent } from './components/privacy-policy/page/pri
     PrivacyPolicyDialogComponent,
     PrivacyPolicyContentComponent,
     PrivacyPolicyPageComponent,
+    InfoComponent,
   ],
   imports: [
     CommonModule,
