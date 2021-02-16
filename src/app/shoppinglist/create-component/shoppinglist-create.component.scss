@@ -1,6 +1,37 @@
-.mb-30 {
-    margin-bottom: 2.3rem!important
+::ng-deep .form-field {
+  // mat-input caret color
+  .mat-input-element {
+    caret-color: aliceblue !important;
+  }
+  // field label background gradient
+  .mat-form-field-wrapper {
+    padding-top: 0.6em;
+    padding-left: 0.3em;
+    border-top-left-radius: 5px;
+    background-image: radial-gradient(farthest-side at 23% 19%,#00000085,transparent);
+  }
 }
-::ng-deep .caret-color{
-    caret-color:aliceblue!important;
+
+h1 {
+  text-align: center;
+}
+button.create:hover {
+  background-color: #6200ea!important;
+}
+.btn-create {
+  margin-bottom: 0.8rem !important;
+  height: 48px !important;
+}
+.content {
+  min-width: 340px !important;
+  padding: 2rem !important;
+}
+.input-container {
+  text-align: center !important;
+}
+.btn-container {
+  text-align: center !important;
+  @media (min-width: 599px) {
+    text-align: right !important;
+  }
 }

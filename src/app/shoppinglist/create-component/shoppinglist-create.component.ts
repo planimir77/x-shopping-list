@@ -51,7 +51,6 @@ export class ShoppinglistCreateComponent implements OnInit {
   }
 
   onSubmit(): void {
-    debugger;
     const input = this.capitalize(this.addShopFormGroup.value);
 
     this.isLoading = true;
@@ -69,7 +68,6 @@ export class ShoppinglistCreateComponent implements OnInit {
       });
   }
   capitalize(obj: any): any {
-    //obj.shoppinglistName = obj.shoppinglistName[0].toUpperCase() + obj.shoppinglistName.substr(1);
     const shoppinglistName = obj.shoppinglistName.trim();
     const firstLetter = shoppinglistName[0];
     obj.shoppinglistName = shoppinglistName.replace(firstLetter, firstLetter.toUpperCase());

@@ -1,14 +1,16 @@
-<div class="conteiner my-5 pt-5">
-  <div class="row h-100 justify-content-center align-items-center">
-    <h1>Create New Shopping List</h1>
-    <div class="col-12">
-      <form
-        [formGroup]="addShopFormGroup"
-        (ngSubmit)="onSubmit()"
-        class="row justify-content-center align-items-cente text-center mt-4"
+<div class="content-center content">
+  <h1>Create New Shopping List</h1>
+  <form [formGroup]="addShopFormGroup" (ngSubmit)="onSubmit()" class="pt-4">
+    <div class="container">
+      <div
+        fxLayout="row nowrap"
+        fxFlexFill
+        fxLayoutGap="20px"
+        fxLayout.xs="column"
+        fxLayoutAlign="space-around center"
       >
-        <p>
-          <mat-form-field appearance="outline" class="example-full-width">
+        <div class="input-container" >
+          <mat-form-field appearance="outline" class="form-field">
             <mat-label>Shopping List Name</mat-label>
             <input
               matInput
@@ -30,17 +32,21 @@
               >Shopping List Name should be less than 20 characters</mat-error
             >
           </mat-form-field>
-        </p>
-        <button
-        mat-stroked-button
-        type="submit"
-        [disabled]="!addShopFormGroup.valid"
-        class="btn btn-primary ml-5 mb-30 mt-1"
-        >
-        Create
-      </button>
-    </form>
-    <app-loading [isLoading]="isLoading"></app-loading>
+        </div>
+        <div class="btn-container" >
+          <button
+            mat-raised-button
+            color="primary"
+            type="submit"
+            [disabled]="!addShopFormGroup.valid"
+            [class.create]="addShopFormGroup.valid"
+            class="btn-create"
+          >
+            Create
+          </button>
+        </div>
+      </div>
     </div>
-  </div>
+  </form>
+  <app-loading [isLoading]="isLoading"></app-loading>
 </div>
