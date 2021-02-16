@@ -1,4 +1,4 @@
-<div class="mx-sm-5 pt-5 px-3">
+<div class="mx-sm-5 py-5 px-3">
   <div class="justify-content-center trim">
     <div class="row px-5 pt-4 pb-2">
       <div class="col-6">
@@ -112,8 +112,11 @@
           <!-- Submit -->
           <div class="text-center">
             <button
+              mat-raised-button
+              color="primary"
               type="submit"
-              class="btn btn-primary my-4"
+              class="my-4"
+              [class.btn-login]="!loginForm.invalid"
               [disabled]="loginForm.invalid"
             >
               Login

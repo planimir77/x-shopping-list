@@ -177,8 +177,11 @@
           <!-- Submit -->
           <div class="text-center">
             <button
+              mat-raised-button
+              color="primary"
               type="submit"
-              class="btn btn-primary mt-4"
+              class="mt-4"
+              [class.btn-create]="!form.invalid"
               [disabled]="form.invalid"
             >
               Create account
