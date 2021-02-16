@@ -1,3 +1,4 @@
+<img src="../assets/images/coffee.jpg" #bgImage hidden/>
 <mat-sidenav-container>
   <mat-sidenav
     #drawer
@@ -12,8 +13,8 @@
         ><mat-icon>dashboard</mat-icon>Dashboard</a
       >
       <mat-divider></mat-divider>
-      <a mat-list-item routerLink="#">
-        <mat-icon>content_paste</mat-icon>Favorite</a
+      <a mat-list-item *ngIf="isLogged$ | async" [routerLink]="" (click)="routeToFavorite()">
+        <mat-icon>star</mat-icon>Favorite</a
       >
       <mat-divider></mat-divider>
       <a mat-list-item routerLink="#"
@@ -29,6 +30,9 @@
       <a mat-list-item routerLink="#">
         <mat-icon>calendar_today</mat-icon>Calendar</a
       >
+      <mat-divider></mat-divider>
+      <a mat-list-item routerLink="/privacy-policy"> <mat-icon>privacy_tip</mat-icon>Privacy Policy</a>
+      <mat-divider></mat-divider>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -46,7 +50,7 @@
       <div class="spacer"></div>
       <a routerLink="/">
         <span>
-            <span *ngIf="currentUser?.username; else x">{{ currentUser?.username | capitalize | endWithS }}</span>
+            <span *ngIf="currentUser?.username; else x">{{ currentUser?.username | titlecase | endWithS }}</span>
             <ng-template #x>
                 <span>X</span>
             </ng-template>
@@ -60,7 +64,7 @@
     </mat-toolbar>
 
     <!-- Main -->
-    <div class="h-99">
+    <div class="main-content">
       <router-outlet></router-outlet>
     </div>
 
