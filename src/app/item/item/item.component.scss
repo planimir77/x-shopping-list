@@ -1,11 +1,29 @@
-:host {
-  .mat-icon {
-    font-size: 18px;
+.toggle-menu-button {
+  width: 0px !important;
+}
+.menu-icon {
+  font-size: 20px !important;
+}
+.mat-menu-button-text {
+  color: "khaki" !important;
+}
+.item-content {
+  display: flex !important;
+  :hover {
+    cursor: pointer;
   }
 }
-button:focus, 
-button:active:focus, 
-button.active:focus {
-    outline: none !important;
-    outline-style: none !important;
+.item-text {
+  padding-top: 0.7rem !important;
+  padding-left: 0rem !important;
+  font-size: 20px;
+  font-family: "Verdana", sans-serif;
+}
+.width-fill-available {
+  width: -webkit-fill-available;
+}
+::ng-deep .mat-menu-background {
+  background-image: url("/assets/images/coffee.jpg");
+  background-size: inherit;
+  background-position-x: revert;
 }
