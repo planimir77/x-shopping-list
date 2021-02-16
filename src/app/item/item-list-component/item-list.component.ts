@@ -9,14 +9,27 @@ import { IItem, IShoppinglist } from 'src/app/shared/interfaces';
 export class ItemListComponent implements OnInit {
 
   @Input() shoppinglist: IShoppinglist;
-  @Output() itemChange = new EventEmitter<string>();
+  @Input() items: IItem[];
+  @Output() itemChange = new EventEmitter<IItem>();
+  @Output() itemRemove = new EventEmitter<string>();
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit(): void { }
+
+  onItemChange(value: IItem) {
+    this.itemChange.emit(value);
   }
 
-  itemChanged(value: string){
-    this.itemChange.emit(value);
+  onItemRemove(value: string) {
+    this.itemRemove.emit(value);
+  }
+
+  setStyle(itemName: string): any {
+    if (itemName.length > 20) {
+      return { height: '90px' };
+    } else {
+      return {};
+    }
   }
 }

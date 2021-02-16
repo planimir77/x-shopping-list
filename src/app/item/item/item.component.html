@@ -13,7 +13,7 @@
       <span [ngStyle]="{ color: 'khaki'}">Edit {{ item.itemName }}</span>
     </button>
     <mat-divider></mat-divider>
-    <button mat-menu-item (click)="itemRemove()">
+    <button mat-menu-item (click)="onItemRemove()">
       <mat-icon [ngStyle]="{ color: '#ff1f00' }">remove_circle </mat-icon>
       <span [ngStyle]="{ color: 'khaki' }">Remove {{ item.itemName }}</span>
     </button>

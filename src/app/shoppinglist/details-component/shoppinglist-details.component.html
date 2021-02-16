@@ -27,8 +27,8 @@
       <app-item-list
         [items]="items"
         [shoppinglist]="shoppinglist"
-        (itemChange)="onItemChanged($event)"
-        (itemRemoved)="itemRemove($event)"
+        (itemChange)="onItemChange($event)"
+        (itemRemove)="onItemRemove($event)"
       ></app-item-list>
     </mat-tab>
     <mat-tab>
@@ -41,7 +41,7 @@
         [isDone]="isDone"
         [items]="items"
         [shoppinglistId]="shoppinglist?._id"
-        (itemChange)="onItemChanged($event)"
+        (itemChange)="onItemChange($event)"
       ></app-item-subscribed-list>
     </mat-tab>
   </mat-tab-group>

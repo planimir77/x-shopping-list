@@ -14,7 +14,7 @@ export class ItemComponent implements OnInit {
   @Input() item: IItem;
   @Input() shoppinglistId: string;
   @Output() itemChange = new EventEmitter<IItem>();
-  @Output() itemRemoved = new EventEmitter<string>();
+  @Output() itemRemove = new EventEmitter<string>();
   @ViewChild(MatMenuTrigger) triggerBtn: MatMenuTrigger;
 
   constructor(
@@ -49,13 +49,13 @@ export class ItemComponent implements OnInit {
     }
   }
 
-  itemRemove(): void{ 
+  onItemRemove(): void{ 
     // Remove item
     this.shoppinglistService.removeShoppinglistItem(this.shoppinglistId, this.item._id)
     .subscribe({
       next: (response) => {
         if(response){
-          this.itemRemoved.emit(this.item._id);
+          this.itemRemove.emit(this.item._id);
         }
       },
       error: (err) => {

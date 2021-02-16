@@ -1,9 +1,14 @@
 <mat-list>
-  <mat-list-item *ngFor="let item of shoppinglist?.items">
+  <mat-list-item
+    *ngFor="let item of items"
+    [ngStyle]="setStyle(item.itemName)"
+  >
     <app-item
-      [shoppinglist]="shoppinglist"
+      [ngStyle]="{ width: '-webkit-fill-available'}"
+      [shoppinglistId]="shoppinglist?._id"
       [item]="item"
-      (itemChange)="itemChanged($event)"
+      (itemChange)="onItemChange($event)"
+      (itemRemove)="onItemRemove($event)"
     ></app-item>
   </mat-list-item>
 </mat-list>

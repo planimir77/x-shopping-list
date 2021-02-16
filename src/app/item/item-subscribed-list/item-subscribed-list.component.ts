@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ItemService } from 'src/app/core/services';
 import { IItem } from 'src/app/shared/interfaces';
 import { NO_ITEMS_YET, NO_CHECKED_ITEMS, DONE} from 'src/app/shared/constants';

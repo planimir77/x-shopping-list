@@ -54,10 +54,10 @@ export class ItemAddComponent implements OnInit {
         // Check if exist
         if (item) {
 
-          // Update if not exist in the shopping list
+          // Add if not exist in the shopping list
           if (!item.shoppinglists.find(x => x.toString() === this.shoppinglist._id)) {
 
-            this.shoppinglistService.updateShoppinglistItems(this.shoppinglist._id, item._id)
+            this.shoppinglistService.addShoppinglistItem(this.shoppinglist._id, item._id)
               .subscribe({
                 next: (response) => {
                   this.itemAdded.emit(response);

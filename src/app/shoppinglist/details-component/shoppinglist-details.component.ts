@@ -64,7 +64,7 @@ export class ShoppinglistDetailsComponent implements OnInit {
     this.items.push(item);
   }
 
-  onItemChanged(newItem: any): void {
+  onItemChange(newItem: any): void {
     const index = this.getItemIndex(newItem._id);
 
     this.items.splice(index, 1, newItem);
@@ -73,8 +73,7 @@ export class ShoppinglistDetailsComponent implements OnInit {
     this.setIsDone();
   }
 
-  itemRemove(itemId: string): void {
-    debugger;
+  onItemRemove(itemId: string): void {
     const index = this.getItemIndex(itemId);
 
     this.items.splice(index, 1);
