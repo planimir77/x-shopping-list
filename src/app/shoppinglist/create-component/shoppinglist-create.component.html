@@ -19,17 +19,14 @@
               placeholder="Type new shopping list name"
               formControlName="shoppinglistName"
             />
-            <mat-error *ngIf="checkError('shoppinglistName', 'required')"
+            <mat-error *ngIf="checkError('shoppinglistName', ['required'])"
               >Shopping List Name is required</mat-error
             >
-            <mat-error *ngIf="checkError('shoppinglistName', 'whitespace')"
-              >Please enter valid data</mat-error
+            <mat-error *ngIf="checkError('shoppinglistName', ['minlength', 'whitespace'])"
+              >Shopping List Name should be more than {{minLength}} characters</mat-error
             >
-            <mat-error *ngIf="checkError('shoppinglistName', 'minlength')"
-              >Shopping List Name should be more than 3 characters</mat-error
-            >
-            <mat-error *ngIf="checkError('shoppinglistName', 'maxlength')"
-              >Shopping List Name should be less than 20 characters</mat-error
+            <mat-error *ngIf="checkError('shoppinglistName', ['maxlength'])"
+              >Shopping List Name should be less than {{maxLength}} characters</mat-error
             >
           </mat-form-field>
         </div>

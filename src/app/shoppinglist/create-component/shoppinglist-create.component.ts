@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ShoppinglistService } from '../../core/services';
-import { FormGroup, FormControl, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators'
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { ValidateWhitespace } from '../shoppinglist.validator'
 
 @Component({
   selector: 'app-shoppinglist-create',
@@ -14,6 +13,8 @@ export class ShoppinglistCreateComponent implements OnInit {
 
   public addShopFormGroup: FormGroup;
   isLoading = false;
+  minLength = 3;
+  maxLength = 20;
 
   constructor(
     private shoppinglistService: ShoppinglistService,
@@ -24,38 +25,47 @@ export class ShoppinglistCreateComponent implements OnInit {
     this.addShopFormGroup = new FormGroup({
       shoppinglistName: new FormControl('', [
         Validators.required,
-        Validators.minLength(3),
-        Validators.maxLength(20),
-        this.whitespaceValidator,
+        Validators.minLength(this.minLength),
+        Validators.maxLength(this.maxLength),
+        ValidateWhitespace,
       ]),
     });
+
+    this.addShopFormGroup
+      .get('shoppinglistName')
+      .valueChanges
+      .subscribe((changes) => {
+        if (changes.trimStart().length !== changes.length) {
+          this.addShopFormGroup
+            .patchValue({ 'shoppinglistName': changes.trimStart() });
+        }
+
+        if (changes.includes('  ')) {
+          const newValue = changes.replace('  ', ' ');
+          this.addShopFormGroup
+            .patchValue({ 'shoppinglistName': newValue });
+        }
+
+        if (changes.length === 1 && changes !== changes.toUpperCase()) {
+          this.addShopFormGroup
+            .patchValue({ 'shoppinglistName': changes.toUpperCase() });
+        }
+      });
   }
 
-  public whitespaceValidator(control: FormControl): ValidationErrors {
-    let isValid = null;
-    if (
-      control.value.length < 3 ||
-      (control.value.trim().length === control.value.length)) {
-      return;
-    } else {
-      const isWhitespace = control.value.trim().length === 0;
-      isValid = !isWhitespace;
-      isValid = control.value.trim().length >= 3;
-
+  public checkError = (controlName: string, errorNames: string[]) => {
+    for (const errorName of errorNames) {
+      if (this.addShopFormGroup.controls[controlName].hasError(errorName)) {
+        return true;
+      }
     }
-    return isValid ? null : { 'whitespace': true };
-  }
-
-  public checkError = (controlName: string, errorName: string) => {
-    return this.addShopFormGroup.controls[controlName].hasError(errorName);
+    return false;
   }
 
   onSubmit(): void {
-    const input = this.capitalize(this.addShopFormGroup.value);
-
     this.isLoading = true;
 
-    this.shoppinglistService.createShoppinglist(input)
+    this.shoppinglistService.createShoppinglist(this.addShopFormGroup.value.trimEnd())
       .subscribe({
         next: (response) => {
           console.log(response);
@@ -67,11 +77,4 @@ export class ShoppinglistCreateComponent implements OnInit {
         }
       });
   }
-  capitalize(obj: any): any {
-    const shoppinglistName = obj.shoppinglistName.trim();
-    const firstLetter = shoppinglistName[0];
-    obj.shoppinglistName = shoppinglistName.replace(firstLetter, firstLetter.toUpperCase());
-    return obj;
-  }
-
 }
