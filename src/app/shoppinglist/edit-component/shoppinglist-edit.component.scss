@@ -10,8 +10,11 @@
         background-color:#fff59d85;
         color: black;
     }
-    .btn-ok:hover {
+    button.btn-ok:hover {
         background-color: #673ab796;
         color: white;
+    }
+    mat-form-field {
+        height: 13vh;
     }
 }
