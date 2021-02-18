@@ -43,7 +43,7 @@ export class ShoppinglistDashboardComponent implements OnInit {
 
   onFavoriteClick(shoppinglistId: string, index: number, isFavorite: boolean): void {
     this.isFavoriteClicked = true;
-    
+
     this.shoppinglistService.getFavoriteShoppinglist()
       .subscribe({
         next: (exFavorite) => {
@@ -122,8 +122,12 @@ export class ShoppinglistDashboardComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         // Call service
-        debugger;
-        this.shoppinglists[result.index].shoppinglistName = result.name;
+        this.shoppinglistService.updateShoppinglist(result.id, result.name.trim())
+          .subscribe(response => { 
+            if (response){
+              this.shoppinglists[result.index].shoppinglistName = response.shoppinglistName;
+            }
+          });
       }
     });
   }
