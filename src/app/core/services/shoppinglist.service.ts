@@ -12,6 +12,13 @@ const apiUrl = environment.apiUrl;
 export class ShoppinglistService {
   constructor(private httpClient: HttpClient) { }
 
+  // put("/api/shoppinglists/:id")
+  updateShoppinglist(id: string, newName: string): Observable<IShoppinglist> {
+    return this.httpClient.put<IShoppinglist>(
+      `${apiUrl}/api/shoppinglists/${id}`, 
+      { newName }, 
+      );
+  }
   // post("/api/shoppinglists/add-item")
   addShoppinglistItem(shoppinglistId: string, itemId: string): Observable<IShoppinglist> {
     return this.httpClient.post<IShoppinglist>(
