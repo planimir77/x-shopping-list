@@ -70,4 +70,8 @@ export class ShoppinglistEditComponent implements OnInit {
   onCancelClick(): void {
     this.dialogRef.close();
   }
+
+  onSubmit(): void {
+    this.dialogRef.close(this.data);
+  }
 }
