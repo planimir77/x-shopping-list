@@ -22,4 +22,8 @@ export class InfoComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onCancelClick():void {
+    this.dialogRef.close();
+  }
+
 }

@@ -1,14 +1,42 @@
+mat-icon {
+  display: none;
+}
 ::ng-deep .dialog-container-info .mat-dialog-container {
   background-image: url("/assets/images/coffee.jpg");
   background-position: center;
   border-radius: 18px;
-  .mat-dialog-actions {
-    justify-content: flex-end !important;
+  .btn-cancel {
+    display: none;
   }
-  .btn-ok:hover {
-    background-color: #673ab796 !important;
+}
+::ng-deep .dialog-container-delete .mat-dialog-container {
+  background-image: url("/assets/images/coffee.jpg");
+  background-position: center;
+  border-radius: 18px;
+  background-blend-mode: difference;
+  .mat-dialog-title {
+    margin-left: 15px;
+    margin-right: 15px;
   }
+  .warning-icon {
+    display: inline-block;
+    color: #C1402D;
+    font-size: 30px;
+  }
+}
+.mat-dialog-actions {
+  justify-content: flex-end !important;
+}
+.btn-ok:hover {
+  background-color: #673ab796 !important;
+}
+.btn-cancel:hover {
+  background-color:#fff59d85;
+  color: black;
 }
 .content {
     margin-right: 4rem !important;
+}
+.line {
+  display: flex;
 }
