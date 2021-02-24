@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { ShoppinglistService } from 'src/app/core/services';
-import { IShoppinglist } from 'src/app/shared/interfaces';
+import { AuthService, ShoppinglistService } from 'src/app/core/services';
+import { InfoComponent } from 'src/app/shared/components/info/info.component';
+import { IShoppinglist, IUser } from 'src/app/shared/interfaces';
 import { ShoppinglistEditComponent } from '../edit-component/shoppinglist-edit.component';
 
 @Component({
@@ -16,11 +17,13 @@ export class ShoppinglistDashboardComponent implements OnInit {
   shoppinglists: IShoppinglist = null;
   isMenuOpen: boolean = false;
   isFavoriteClicked: boolean = false;
+  currentUser: IUser;
 
   constructor(
     private shoppinglistService: ShoppinglistService,
     private router: Router,
     public dialog: MatDialog,
+    private authService: AuthService,
   ) {
     shoppinglistService.loadUserShoppinglists().subscribe(shoppinglists => {
       this.shoppinglists = shoppinglists;
@@ -32,6 +35,8 @@ export class ShoppinglistDashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.authService.currentUser$.subscribe(currentUser =>
+      this.currentUser = currentUser);
   }
 
   onClick(event: any): void {
@@ -95,19 +100,33 @@ export class ShoppinglistDashboardComponent implements OnInit {
     this.isMenuOpen = false;
   }
 
-  delete(shoppinglistId: string, index: string) {
-    this.shoppinglistService.deleteShoppinglist(shoppinglistId)
-      .subscribe({
-        next: (response) => {
-          if (response) {
-            this.shoppinglists.splice(index, 1);
-          }
-        },
-        error: (err) => {
-          console.log(err);
-        }
-      });
+  delete(shoppinglistId: string, index: string, shoppinglistName: string) {
+    const dialogRef = this.dialog.open(InfoComponent, {
+      panelClass: 'dialog-container-delete',
+      width: '340px',
+      data: {
+        info: `Are you sure you want to delete the ${shoppinglistName} ?`,
+        user: this.currentUser?.username,
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.shoppinglistService
+          .deleteShoppinglist(shoppinglistId)
+          .subscribe({
+            next: (response) => {
+              if (response) {
+                this.shoppinglists.splice(index, 1);
+              }
+            },
+            error: (err) => {
+              console.log(err);
+            }
+          });
+      }
+    })
   }
+
   edit(shoppinglistId: string, shoppinglistName: string, index: string) {
     const dialogRef = this.dialog.open(ShoppinglistEditComponent, {
       panelClass: 'dialog-container-edit',
@@ -123,8 +142,8 @@ export class ShoppinglistDashboardComponent implements OnInit {
       if (result) {
         // Call service
         this.shoppinglistService.updateShoppinglist(result.id, result.name.trim())
-          .subscribe(response => { 
-            if (response){
+          .subscribe(response => {
+            if (response) {
               this.shoppinglists[result.index].shoppinglistName = response.shoppinglistName;
             }
           });

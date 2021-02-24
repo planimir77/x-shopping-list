@@ -45,7 +45,7 @@
               >
             </button>
             <mat-divider></mat-divider>
-            <button class="delete-button" mat-menu-item (click)="delete(shoppinglist._id, i)">
+            <button class="delete-button" mat-menu-item (click)="delete(shoppinglist._id, i, shoppinglist.shoppinglistName)">
               <mat-icon [ngStyle]="{ color: '#C1402D' }">remove_circle</mat-icon
               ><span [ngStyle]="{ color: 'khaki' }"
                 >Remove {{ shoppinglist.shoppinglistName }}</span
