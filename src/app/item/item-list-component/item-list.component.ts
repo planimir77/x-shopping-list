@@ -8,10 +8,20 @@ import { IItem, IShoppinglist } from 'src/app/shared/interfaces';
 })
 export class ItemListComponent implements OnInit {
 
-  @Input() shoppinglist: IShoppinglist;
-  @Input() items: IItem[];
-  @Output() itemChange = new EventEmitter<IItem>();
-  @Output() itemRemove = new EventEmitter<string>();
+  @Input() 
+  shoppinglist: IShoppinglist;
+
+  @Input() 
+  items: IItem[];
+
+  @Output() 
+  itemChange = new EventEmitter<IItem>();
+
+  @Output() 
+  itemRemove = new EventEmitter<string>();
+
+  @Input()
+  isOwner: boolean;
 
   constructor() { }
 
