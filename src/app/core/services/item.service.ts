@@ -32,17 +32,17 @@ export class ItemService {
     );
   }
 
-  // post("/api/item/subscribe")
+  // put("/api/item/subscribe")
   subscribe(itemId: string, shoppinglistId: string) {
-    return this.httpClient.post<IItem>(
+    return this.httpClient.put<IItem>(
       `${apiUrl}/api/item/subscribe`,
       { itemId, shoppinglistId },
     );
   }
 
-  // post("/api/item/unsubscribe")
+  // put("/api/item/unsubscribe")
   unsubscribe(itemId: string, shoppinglistId: string) {
-    return this.httpClient.post<IItem>(
+    return this.httpClient.put<IItem>(
       `${apiUrl}/api/item/unsubscribe`,
       { itemId, shoppinglistId },
     );
