@@ -6,5 +6,5 @@ export interface IShoppinglist extends IBase {
     favorite: boolean,
     subscribers: IUser[],
     items: IItem[],
-    userId: IUser,
+    userId: string,
 }
