@@ -1,8 +1,7 @@
 <h1 mat-dialog-title>{{ data.name }}</h1>
-<form [formGroup]="formGroup" (submit)='onSubmit()'>
-  <div mat-dialog-content>
+  <div mat-dialog-content [formGroup]="form" (keyup.enter)='onOkClick()'>
     <p>Change your shopping list name</p>
-    <mat-form-field appearance="outline">
+    <mat-form-field appearance="outline" class="edit-form-field">
       <mat-label>Shopping List New Name</mat-label>
       <input 
       type="text" 
@@ -25,14 +24,14 @@
       Cancel
     </button>
     <button
+      (click)="onOkClick()"
       mat-stroked-button
       type="submit"
-      selected="true"
+      selected
       cdkFocusInitial
-      [disabled]="!formGroup.valid"
-      [class.btn-ok]="formGroup.valid"
+      [disabled]="!form.valid"
+      [class.btn-ok]="form.valid"
     >
       Ok
     </button>
   </div>
-</form>

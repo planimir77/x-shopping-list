@@ -1,20 +1,27 @@
 ::ng-deep .dialog-container-edit .mat-dialog-container {
-    background-image: url("/assets/images/coffee.jpg");
-    background-position: top;
-    border-radius: 18px;
+  background-image: url("/assets/images/coffee.jpg");
+  background-position: top;
+  border-radius: 18px;
 
-    .mat-dialog-actions {
-        justify-content: flex-end!important;
+  .mat-dialog-actions {
+    justify-content: flex-end !important;
+  }
+  .btn-cancel:hover {
+    background-color: #fff59d85;
+    color: black;
+  }
+  button.btn-ok:hover {
+    background-color: #673ab796;
+    color: white;
+  }
+  .edit-form-field {
+    height: 13vh;
+     &.ng-valid   {
+      &.mat-focused {
+        .mat-form-field-label {
+          color: #b88fff !important;
+        }
+      }
     }
-    .btn-cancel:hover {
-        background-color:#fff59d85;
-        color: black;
-    }
-    button.btn-ok:hover {
-        background-color: #673ab796;
-        color: white;
-    }
-    mat-form-field {
-        height: 13vh;
-    }
+  }
 }
