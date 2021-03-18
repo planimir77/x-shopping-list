@@ -8,6 +8,7 @@
       [shoppinglistId]="shoppinglist?._id"
       [item]="item"
       [isOwner]="isOwner"
+      [currentUser]="currentUser"
       (itemChange)="onItemChange($event)"
       (itemRemove)="onItemRemove($event)"
     ></app-item>

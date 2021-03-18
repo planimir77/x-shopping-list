@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { IItem, IShoppinglist } from 'src/app/shared/interfaces';
+import { IItem, IShoppinglist, IUser } from 'src/app/shared/interfaces';
 
 @Component({
   selector: 'app-item-list',
@@ -22,6 +22,9 @@ export class ItemListComponent implements OnInit {
 
   @Input()
   isOwner: boolean;
+
+  @Input()
+  currentUser: IUser;
 
   constructor() { }
 
