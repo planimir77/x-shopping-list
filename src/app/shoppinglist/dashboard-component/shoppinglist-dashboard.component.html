@@ -4,6 +4,7 @@
   <app-loading [isLoading]="!shoppinglists"></app-loading>
   <!-- Loading -->
   <div
+    *ngIf="shoppinglists"
     class="content"
     fxLayout="row wrap"
     fxLayout.xs="column"
@@ -20,9 +21,11 @@
         <mat-card-title class="card-title">
           {{ shoppinglist.shoppinglistName }}
           <button
-          (click)="onFavoriteClick(shoppinglist._id, i, shoppinglist.favorite)"
+            (click)="onFavoriteClick(shoppinglist._id, i, shoppinglist.favorite)"
             mat-icon-button
             class="button-left-corner"
+            role="button"
+            title="Toggle Favorite"
           >
             <mat-icon *ngIf="shoppinglist.favorite" class="favorite-icon">star</mat-icon>
             <mat-icon *ngIf="!shoppinglist.favorite" class="favorite-icon">star_outline</mat-icon>
