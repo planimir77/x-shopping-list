@@ -10,7 +10,7 @@
         fxLayoutAlign="space-around center"
       >
         <div class="input-container" >
-          <mat-form-field appearance="outline" class="form-field">
+          <mat-form-field appearance="outline" class="create-form-field">
             <mat-label>Shopping List Name</mat-label>
             <input
               matInput
@@ -35,8 +35,8 @@
             mat-raised-button
             color="primary"
             type="submit"
-            [disabled]="!addShopFormGroup.valid"
-            [class.create]="addShopFormGroup.valid"
+            [disabled]="!addShopFormGroup.valid || !isLogged"
+            [class.create]="addShopFormGroup.valid && isLogged"
             class="btn-create"
           >
             Create

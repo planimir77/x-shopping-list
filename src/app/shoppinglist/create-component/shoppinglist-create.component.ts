@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ShoppinglistService } from '../../core/services';
+import { AuthService, ShoppinglistService } from '../../core/services';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { ValidateWhitespace } from '../shoppinglist.validator'
+import { ValidateWhitespace, CheckInput } from '../shoppinglist.validator'
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-shoppinglist-create',
@@ -15,13 +16,18 @@ export class ShoppinglistCreateComponent implements OnInit {
   isLoading = false;
   minLength = 3;
   maxLength = 20;
+  isLogged: boolean;
 
   constructor(
     private shoppinglistService: ShoppinglistService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService,
   ) { }
 
   ngOnInit(): void {
+    this.authService.isLogged$.subscribe(isLogged =>
+      this.isLogged = isLogged);
+
     this.addShopFormGroup = new FormGroup({
       shoppinglistName: new FormControl('', [
         Validators.required,
@@ -35,20 +41,11 @@ export class ShoppinglistCreateComponent implements OnInit {
       .get('shoppinglistName')
       .valueChanges
       .subscribe((changes) => {
-        if (changes.trimStart().length !== changes.length) {
-          this.addShopFormGroup
-            .patchValue({ 'shoppinglistName': changes.trimStart() });
-        }
+        const result = CheckInput(changes);
 
-        if (changes.includes('  ')) {
-          const newValue = changes.replace('  ', ' ');
+        if (result) {
           this.addShopFormGroup
-            .patchValue({ 'shoppinglistName': newValue });
-        }
-
-        if (changes.length === 1 && changes !== changes.toUpperCase()) {
-          this.addShopFormGroup
-            .patchValue({ 'shoppinglistName': changes.toUpperCase() });
+            .patchValue({ 'shoppinglistName': result });
         }
       });
   }
@@ -65,10 +62,11 @@ export class ShoppinglistCreateComponent implements OnInit {
   onSubmit(): void {
     this.isLoading = true;
 
-    this.shoppinglistService.createShoppinglist(this.addShopFormGroup.value.trimEnd())
+    const shoppinglistName = this.addShopFormGroup.value.shoppinglistName.trimEnd();
+
+    this.shoppinglistService.createShoppinglist(shoppinglistName)
       .subscribe({
         next: (response) => {
-          console.log(response);
           this.router.navigate(['/shoppinglist/', response._id]);
         },
         error: (err) => {
