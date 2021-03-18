@@ -4,7 +4,9 @@ import { Router } from '@angular/router';
 import { AuthService, ShoppinglistService } from 'src/app/core/services';
 import { InfoComponent } from 'src/app/shared/components/info/info.component';
 import { IShoppinglist, IUser } from 'src/app/shared/interfaces';
+import { CREATE_FIRST_LIST } from 'src/app/shared/constants'
 import { ShoppinglistEditComponent } from '../edit-component/shoppinglist-edit.component';
+import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,20 +16,31 @@ import { ShoppinglistEditComponent } from '../edit-component/shoppinglist-edit.c
 export class ShoppinglistDashboardComponent implements OnInit {
 
 
-  shoppinglists: IShoppinglist = null;
+  shoppinglists: IShoppinglist[] = null;
   isMenuOpen: boolean = false;
   isFavoriteClicked: boolean = false;
   currentUser: IUser;
+  isLogged: boolean;
+  horizontalPosition: MatSnackBarHorizontalPosition = 'center';
+  verticalPosition: MatSnackBarVerticalPosition = 'top';
 
   constructor(
     private shoppinglistService: ShoppinglistService,
     private router: Router,
     public dialog: MatDialog,
+    public _snackBar: MatSnackBar,
     private authService: AuthService,
   ) {
     shoppinglistService.loadUserShoppinglists().subscribe(shoppinglists => {
       this.shoppinglists = shoppinglists;
-      if (!shoppinglists) {
+
+      if (this.shoppinglists.length === 0) {
+        this._snackBar.open(CREATE_FIRST_LIST, '', {
+          duration: 4000,
+          panelClass: ['create-snack-bar'],
+          horizontalPosition: this.horizontalPosition,
+          verticalPosition: this.verticalPosition,
+        });
         return this.router.navigate(['/shoppinglist/create']);
       }
     });
@@ -35,8 +48,15 @@ export class ShoppinglistDashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.authService.isLogged$.subscribe(isLogged => {
+      if (!isLogged) {
+        return this.router.navigate(['/user/login']);
+      }
+      this.isLogged = isLogged;
+    });
     this.authService.currentUser$.subscribe(currentUser =>
-      this.currentUser = currentUser);
+      this.currentUser = currentUser
+    );
   }
 
   onClick(event: any): void {
@@ -100,7 +120,7 @@ export class ShoppinglistDashboardComponent implements OnInit {
     this.isMenuOpen = false;
   }
 
-  delete(shoppinglistId: string, index: string, shoppinglistName: string) {
+  delete(shoppinglistId: string, index: number, shoppinglistName: string) {
     const dialogRef = this.dialog.open(InfoComponent, {
       panelClass: 'dialog-container-delete',
       width: '340px',
@@ -127,7 +147,7 @@ export class ShoppinglistDashboardComponent implements OnInit {
     })
   }
 
-  edit(shoppinglistId: string, shoppinglistName: string, index: string) {
+  edit(shoppinglistId: string, shoppinglistName: string, index: number) {
     const dialogRef = this.dialog.open(ShoppinglistEditComponent, {
       panelClass: 'dialog-container-edit',
       width: '340px',
