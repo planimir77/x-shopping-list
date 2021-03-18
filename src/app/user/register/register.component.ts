@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { PrivacyPolicyDialogComponent } from 'src/app/shared/components/privacy-policy/dialog/privacy-policy-dialog.component';
 import { AuthService } from '../../core/services/auth.service';
@@ -18,11 +19,15 @@ export class RegisterComponent implements OnInit {
 
   form: FormGroup;
   isLoading = false;
+  horizontalPosition: MatSnackBarHorizontalPosition = 'center';
+  verticalPosition: MatSnackBarVerticalPosition = 'top';
 
   constructor(
     private authService: AuthService,
     private router: Router,
-    public dialog: MatDialog) {
+    public dialog: MatDialog,
+    private snackBar: MatSnackBar,
+    ) {
   }
 
   ngOnInit(): void {
@@ -64,6 +69,8 @@ export class RegisterComponent implements OnInit {
 
   onSubmit(): void {
     const data = this.form.value;
+    data.username = data.username.toLowerCase();
+    debugger;
   
     this.isLoading = true;
 
@@ -74,9 +81,14 @@ export class RegisterComponent implements OnInit {
           this.isLoading = false;
           this.router.navigate(['/user/login']);
         },
-        error: (err) => {
+        error: (response) => {
           this.isLoading = false;
-          console.log(err);
+          this.snackBar.open(`${response.error.message}`, "", {
+            duration: 5000,
+            panelClass: "warning",
+            horizontalPosition: this.horizontalPosition,
+            verticalPosition: this.verticalPosition,
+          });
         }
       });
     }

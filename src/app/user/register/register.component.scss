@@ -15,3 +15,12 @@
 button.btn-create:hover {
   background-color: #6200ea;
 }
+::ng-deep .warning {
+  background:#fc1818 !important;
+  color: white !important;
+  margin-top: 220px !important;
+  .mat-simple-snackbar{
+    font-size: 16px !important;
+    justify-content: center !important;
+  }
+}
