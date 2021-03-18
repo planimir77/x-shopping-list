@@ -11,6 +11,7 @@ import { SharedModule } from '../shared/shared.module';
 import { ItemModule } from '../item/item.module';
 import { ShoppinglistDashboardComponent } from './dashboard-component/shoppinglist-dashboard.component';
 import { ShoppinglistEditComponent } from './edit-component/shoppinglist-edit.component';
+import { ClipboardModule } from '@angular/cdk/clipboard';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { ShoppinglistEditComponent } from './edit-component/shoppinglist-edit.co
     SharedModule,
     ItemModule,
     FlexLayoutModule,
+    ClipboardModule,
   ],
 })
 export class ShoppinglistModule { }
