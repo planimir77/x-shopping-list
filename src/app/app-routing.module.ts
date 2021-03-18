@@ -20,12 +20,10 @@ const routes: Routes = [
       },
       {
         path: 'shoppinglist',
-        canActivateChild: [AuthGuard],
         loadChildren: () => import('./shoppinglist/shoppinglist.module').then(m => m.ShoppinglistModule)
       },
       {
         path: 'user',
-        //canActivateChild: [AuthGuard],
         loadChildren: () => import('./user/user.module').then(m => m.UserModule)
       },
       {
