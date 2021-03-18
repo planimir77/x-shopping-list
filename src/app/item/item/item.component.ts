@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angu
 import { MatMenuTrigger } from '@angular/material/menu';
 import { Router } from '@angular/router';
 import { ItemService, ShoppinglistService } from 'src/app/core/services';
-import { IItem } from 'src/app/shared/interfaces';
+import { IItem, IUser } from 'src/app/shared/interfaces';
 
 @Component({
   selector: 'app-item',
@@ -11,11 +11,26 @@ import { IItem } from 'src/app/shared/interfaces';
 })
 export class ItemComponent implements OnInit {
 
-  @Input() item: IItem;
-  @Input() shoppinglistId: string;
-  @Output() itemChange = new EventEmitter<IItem>();
-  @Output() itemRemove = new EventEmitter<string>();
-  @ViewChild(MatMenuTrigger) triggerBtn: MatMenuTrigger;
+  @Input() 
+  item: IItem;
+
+  @Input() 
+  shoppinglistId: string;
+
+  @Output() 
+  itemChange = new EventEmitter<IItem>();
+
+  @Output() 
+  itemRemove = new EventEmitter<string>();
+
+  @ViewChild(MatMenuTrigger) 
+  triggerBtn: MatMenuTrigger;
+
+  @Input()
+  isOwner: boolean;
+
+  @Input()
+  currentUser: IUser;
 
   constructor(
     private shoppinglistService: ShoppinglistService,
@@ -69,7 +84,13 @@ export class ItemComponent implements OnInit {
   }
 
   openMatMenu() {
-    this.triggerBtn.openMenu();
+    if(this.isOwner){
+      this.triggerBtn.openMenu();
+    }
+  }
+
+  isItemCreator():boolean { 
+    return this.currentUser?._id === this.item.userId;
   }
 
   errorHandler(error: any):any{
