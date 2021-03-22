@@ -134,7 +134,7 @@
             </div>
             <p
               *ngIf="
-                rePassword.invalid && rePassword.errors && rePassword.touched
+                rePassword.touched && (rePassword.invalid || form.hasError('notEqual')) &&  (rePassword.errors || form.hasError('notEqual'))  
               "
             >
               <small
@@ -145,7 +145,7 @@
               </small>
               <small
                 class="text-danger"
-                *ngIf="rePassword.hasError('notEqual') && password.valid"
+                *ngIf="!rePassword.hasError('required') && form.hasError('notEqual') && password.valid"
               >
                 Passwords Don't Match
               </small>
@@ -166,7 +166,7 @@
                 <label class="custom-control-label pt-1" for="customCheckRegister">
                   <span
                     >I agree with the
-                    <a [routerLink]="" (click)="openDialog()">Privacy Policy</a>
+                    <a (click)="openDialog()">Privacy Policy</a>
                   </span>
                 </label>
               </div>

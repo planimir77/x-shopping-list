@@ -5,6 +5,7 @@ import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition
 import { Router } from '@angular/router';
 import { PrivacyPolicyDialogComponent } from 'src/app/shared/components/privacy-policy/dialog/privacy-policy-dialog.component';
 import { AuthService } from '../../core/services/auth.service';
+import { PasswordsMustMatch } from './register.validator'
 
 @Component({
   selector: 'app-register',
@@ -27,7 +28,7 @@ export class RegisterComponent implements OnInit {
     private router: Router,
     public dialog: MatDialog,
     private snackBar: MatSnackBar,
-    ) {
+  ) {
   }
 
   ngOnInit(): void {
@@ -51,16 +52,18 @@ export class RegisterComponent implements OnInit {
       privacyPolicy: new FormControl('', [
         Validators.requiredTrue
       ]),
-        
-    });
+    },
+      PasswordsMustMatch
+    );
   }
 
   public checkError = (controlName: string, errorName: string) => {
+    debugger;
     if (this.form.touched) {
-
       return this.form.controls[controlName].hasError(errorName);
     }
   }
+
   get username() { return this.form.get('username') };
   get email() { return this.form.get('email') };
   get password() { return this.form.get('password') };
@@ -71,7 +74,7 @@ export class RegisterComponent implements OnInit {
     const data = this.form.value;
     data.username = data.username.toLowerCase();
     debugger;
-  
+
     this.isLoading = true;
 
     if (data.privacyPolicy) {
