@@ -1,7 +1,7 @@
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { MaterialModule } from './material/material.module';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';

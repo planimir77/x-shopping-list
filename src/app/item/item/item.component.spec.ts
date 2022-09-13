@@ -1,4 +1,7 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { TwoRowsPipe } from 'src/app/shared/pipes/two-rows.pipe';
 
 import { ItemComponent } from './item.component';
 
@@ -8,7 +11,14 @@ describe('ItemComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ItemComponent ]
+      imports: [
+        HttpClientModule,
+        RouterTestingModule
+      ],
+      declarations: [ 
+        ItemComponent,
+        TwoRowsPipe 
+      ]
     })
     .compileComponents();
   });

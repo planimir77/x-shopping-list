@@ -91,7 +91,7 @@ export class ShoppinglistDetailsComponent implements OnInit {
     this.items.push(item);
   }
 
-  onItemChange(newItem: any): void {
+  onItemChange(newItem: IItem): void {
     const index = this.getItemIndex(newItem._id);
 
     this.items.splice(index, 1, newItem);

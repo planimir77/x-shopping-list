@@ -36,7 +36,7 @@ export class AppComponent implements OnInit {
     public dialog: MatDialog,
   ) {
     this.cookieMessage = COOKIE_MESSAGE;
-    this.cookieDismiss = I_AGREE
+    this.cookieDismiss = I_AGREE;
   }
 
   ngOnInit(): void {
@@ -45,14 +45,14 @@ export class AppComponent implements OnInit {
     cc.cookieconsent?.initialise({
       palette: {
         popup: {
-          background: "#673ab7",
+          background: '#673ab7',
         },
         button: {
-          background: "#ffe000",
-          text: "#164969"
+          background: '#ffe000',
+          text: '#164969'
         }
       },
-      theme: "classic",
+      theme: 'classic',
       content: {
         message: this.cookieMessage,
         dismiss: this.cookieDismiss,
@@ -61,18 +61,16 @@ export class AppComponent implements OnInit {
 
     this.authService.currentUser$.subscribe(currentUser =>
       this.currentUser = currentUser);
-    
     // Get the title of the current HTML document
     const appTitle = this.titleService.getTitle();
-    
-    // Set the title according to the current route 
+    // Set the title according to the current route
     this.router
       .events.pipe(
         filter(event => event instanceof NavigationEnd),
         map(() => {
           const childRoute = this.activatedRoute.snapshot.firstChild;
           const currentRouteTitle = this.getRouteTitle(childRoute);
-          
+
           return currentRouteTitle;
         })
       ).subscribe((routeTitle: string) => {
@@ -86,30 +84,29 @@ export class AppComponent implements OnInit {
 
   /**
    * Get the title according to the current route
-   * @param childRoute
    */
-  getRouteTitle(childRoute: ActivatedRouteSnapshot) : string {
+  getRouteTitle(childRoute: ActivatedRouteSnapshot): string {
     const firstChild = childRoute.firstChild;
-    if(!firstChild){ 
-      return "";
+    if (!firstChild) {
+      return '';
     }
     if (firstChild.data.title) {
       return firstChild.data.title;
     } else {
-      return "" + this.getRouteTitle(childRoute.firstChild);
+      return '' + this.getRouteTitle(childRoute.firstChild);
     }
   }
-  routeToFavorite(){
+  routeToFavorite(): void{
     // call service to get favorite
     this.shoppinglistService.getFavoriteShoppinglist().subscribe({
       next: (favorite) => {
         if (favorite) {
-          this.router.navigate(["/shoppinglist/", favorite._id]);
-        }else {
-          const dialogRef = this.dialog.open(InfoComponent,{
+          this.router.navigate(['/shoppinglist/', favorite._id]);
+        } else {
+          const dialogRef = this.dialog.open(InfoComponent, {
             panelClass: 'dialog-container-info',
             width: '340px',
-            data: { 
+            data: {
               info: 'You have not selected a favorite shopping list yet',
               user: this.currentUser?.username,
             }

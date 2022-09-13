@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
 
 const apiUrl = environment.apiUrl;
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class AuthService {
 
   private _currentUser: BehaviorSubject<IUser | null> = new BehaviorSubject(undefined);

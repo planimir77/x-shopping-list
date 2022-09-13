@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, Optional } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 export interface DialogInfoData {
@@ -14,15 +14,16 @@ export interface DialogInfoData {
 export class InfoComponent implements OnInit {
 
   constructor(
+    @Optional()
     public dialogRef: MatDialogRef<InfoComponent>,
-    @Inject(MAT_DIALOG_DATA) 
+    @Inject(MAT_DIALOG_DATA)
     public data: DialogInfoData,
   ) { }
 
   ngOnInit(): void {
   }
 
-  onCancelClick():void {
+  onCancelClick(): void {
     this.dialogRef.close();
   }
 

@@ -6,15 +6,15 @@ import { environment } from 'src/environments/environment';
 
 const apiUrl = environment.apiUrl;
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class ItemService {
 
   constructor(private httpClient: HttpClient) { }
 
   // get("/api/item/:_id")
-  loadItem(_id: string): Observable<IItem> {
+  loadItem(id: string): Observable<IItem> {
     return this.httpClient.get<IItem>(
-      `${apiUrl}/api/item/${_id}`
+      `${apiUrl}/api/item/${id}`
     );
   }
   // get("/api/item/by-name/:itemName")
@@ -33,7 +33,7 @@ export class ItemService {
   }
 
   // put("/api/item/subscribe")
-  subscribe(itemId: string, shoppinglistId: string) {
+  subscribe(itemId: string, shoppinglistId: string): Observable<IItem> {
     return this.httpClient.put<IItem>(
       `${apiUrl}/api/item/subscribe`,
       { itemId, shoppinglistId },
@@ -41,7 +41,7 @@ export class ItemService {
   }
 
   // put("/api/item/unsubscribe")
-  unsubscribe(itemId: string, shoppinglistId: string) {
+  unsubscribe(itemId: string, shoppinglistId: string): Observable<IItem> {
     return this.httpClient.put<IItem>(
       `${apiUrl}/api/item/unsubscribe`,
       { itemId, shoppinglistId },

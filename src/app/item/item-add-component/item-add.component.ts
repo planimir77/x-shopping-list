@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
-import { Router } from '@angular/router';
 import { ItemService, ShoppinglistService } from '../../core/services';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { IShoppinglist } from 'src/app/shared/interfaces';
@@ -24,7 +23,6 @@ export class ItemAddComponent implements OnInit {
   constructor(
     private itemService: ItemService,
     private shoppinglistService: ShoppinglistService,
-    private router: Router,
     public _snackBar: MatSnackBar
   ) { }
 

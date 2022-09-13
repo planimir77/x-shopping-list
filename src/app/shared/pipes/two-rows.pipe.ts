@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class TwoRowsPipe implements PipeTransform {
 
   transform(input: string, ): string {
-    if (input.length > 20) {
+    if (input?.length > 20) {
       const index = input.indexOf(' ', 15);
       const newLine = '<br/>';
       if (index < 0) {

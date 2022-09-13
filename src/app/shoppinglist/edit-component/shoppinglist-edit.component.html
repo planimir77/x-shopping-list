@@ -1,6 +1,6 @@
 <h1 mat-dialog-title>{{ data.name }}</h1>
 <mat-divider></mat-divider>
-<div mat-dialog-content class="content" [formGroup]="form" (keyup.enter)="onOkClick()">
+<mat-dialog-content  class="content" [formGroup]="form" (keyup.enter)="onOkClick()">
   <p>Change your shopping list name</p>
   <mat-form-field appearance="outline" class="edit-form-field">
     <mat-label>Shopping List New Name</mat-label>
@@ -22,7 +22,7 @@
       {{ maxLength }} characters</mat-error
     >
   </mat-form-field>
-</div>
+</mat-dialog-content>
 <div mat-dialog-actions>
   <button mat-stroked-button class="btn-cancel" (click)="onCancelClick()">
     Cancel

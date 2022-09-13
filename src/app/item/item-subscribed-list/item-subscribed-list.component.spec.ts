@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ItemSubscribedListComponent } from './item-subscribed-list.component';
@@ -8,9 +9,10 @@ describe('ItemSubscribedListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ItemSubscribedListComponent ]
+      imports: [HttpClientModule],
+      declarations: [ItemSubscribedListComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

@@ -80,7 +80,7 @@ export class ItemComponent implements OnInit {
   }
 
   isInBasket(): boolean {
-    return this.item.subscribers.some(sub => sub === this.shoppinglistId);
+    return this.item?.subscribers.some(sub => sub === this.shoppinglistId);
   }
 
   openMatMenu() {

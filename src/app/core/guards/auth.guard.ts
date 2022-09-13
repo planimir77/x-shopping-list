@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { switchMap, map, tap, first } from 'rxjs/operators';
 import { AuthService } from '../services';
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class AuthGuard implements CanActivateChild {
 
   constructor(

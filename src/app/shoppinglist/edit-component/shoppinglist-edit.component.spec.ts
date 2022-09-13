@@ -1,4 +1,7 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import { ShoppinglistEditComponent } from './shoppinglist-edit.component';
 
@@ -8,9 +11,20 @@ describe('ShoppinglistEditComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ShoppinglistEditComponent ]
+      imports: [
+        HttpClientModule,
+        MatDialogModule,
+        MatDialogModule,
+        FormsModule,
+        ReactiveFormsModule
+      ],
+      declarations: [ShoppinglistEditComponent],
+      providers: [
+        { provide: MAT_DIALOG_DATA, useValue: {} },
+        { provide: MatDialogRef, useValue: {} }
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
